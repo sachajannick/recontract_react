@@ -1,0 +1,32 @@
+$taupe: #dfac89;
+
+.login {
+  padding: 3vw 0 0 10vw;
+
+  &__container {
+    width: 22vw;
+  }
+
+  &__form {
+    display: grid;
+    grid-template-rows: auto;
+    grid-gap: 30px;
+
+    label {
+      font-size: calc(5px + 1vw);
+    }
+
+    p {
+      color: $taupe;
+      font-size: calc(5px + 1vw);
+    }
+  }
+
+  &__input {
+    width: 22vw;
+    padding: 1.5vw;
+    border: none;
+    border-bottom: 1px solid $taupe;
+    font-size: calc(5px + 1vw);
+  }
+}

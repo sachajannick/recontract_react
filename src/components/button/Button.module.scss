@@ -1,0 +1,23 @@
+$black: #000;
+$taupe: #dfac89;
+$darker-taupe: rgba(223, 172, 137, 0.76);
+
+.btn {
+  width: 18vw;
+  height: 4vw;
+  margin-top: 10px;
+  border: none;
+  border-radius: 2px;
+  font-size: calc(8px + 1vw);
+  font-weight: bold;
+  color: $black;
+  background: $taupe;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background: $darker-taupe;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+  }
+}

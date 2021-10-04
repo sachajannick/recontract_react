@@ -1,0 +1,25 @@
+$taupe: #dfac89;
+$darker-taupe: rgba(223, 172, 137, 0.76);
+
+.choose-user {
+  width: 100%;
+  height: inherit;
+  padding: 5vw 10vw 0 10vw;
+  display: flex;
+  align-self: flex-start;
+  flex-direction: column;
+  gap: 3vw;
+
+  &__link {
+    color: $taupe;
+    font-size: calc(7px + 1.5vw);
+    font-weight: 500;
+    text-decoration: none;
+
+    &:hover {
+      color: $darker-taupe;
+      cursor: pointer;
+      transition: all 0.3s ease-out;
+    }
+  }
+}

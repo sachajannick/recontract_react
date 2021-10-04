@@ -1,0 +1,13 @@
+$taupe: #dfac89;
+
+.logo {
+  display: inline-block;
+  font-weight: bold;
+  letter-spacing: -3px;
+  font-size: calc(25px + 4.5vw);
+  text-decoration: none;
+
+  span {
+    color: $taupe;
+  }
+}
