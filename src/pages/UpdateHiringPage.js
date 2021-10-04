@@ -1,13 +1,13 @@
 import React from "react";
 import { LogoBar } from "../components/logoBar/LogoBar";
-import GreetingHeader from "../components/greetingHeader/GreetingHeader";
+import GreetingHeaderLoggedIn from "../components/greetingHeader/GreetingHeaderLoggedIn";
 import GetStartedFormHiring from "../components/getStartedForm/GetStartedFormHiring";
 
 function UpdateHiringPage() {
     return (
         <>
             <LogoBar />
-            <GreetingHeader
+            <GreetingHeaderLoggedIn
                 headLine={"Let's update your profile."}
                 secondLine={"Want to go back?"}
                 linkName={"logged-in-hiring"}

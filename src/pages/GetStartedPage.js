@@ -1,13 +1,13 @@
 import React from "react";
 import { LogoBar } from "../components/logoBar/LogoBar";
-import GreetingHeader from "../components/greetingHeader/GreetingHeader";
+import GreetingHeaderNotLoggedIn from "../components/greetingHeader/GreetingHeaderLoggedIn";
 import ChooseUserGetStarted from "../components/chooseUser/ChooseUserGetStarted";
 
 function GetStartedPage() {
     return (
         <>
             <LogoBar />
-            <GreetingHeader
+            <GreetingHeaderNotLoggedIn
                 headLine={"Let's get you started."}
                 secondLine={"Create your reContract. account. Already registered?"}
                 linkName={"login"}

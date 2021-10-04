@@ -1,13 +1,13 @@
 import React from "react";
 import { LogoBar } from "../components/logoBar/LogoBar";
-import GreetingHeader from "../components/greetingHeader/GreetingHeader";
+import GreetingHeaderNotLoggedIn from "../components/greetingHeader/GreetingHeaderLoggedIn";
 import LoginFormHiring from "../components/loginForm/LoginFormHiring";
 
 function LoginHiringPage() {
     return (
         <>
             <LogoBar />
-            <GreetingHeader
+            <GreetingHeaderNotLoggedIn
                 headLine={"Welcome back!"}
                 secondLine={"Not registered yet?"}
                 linkName={"get-started"}

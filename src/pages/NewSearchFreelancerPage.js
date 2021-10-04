@@ -1,13 +1,13 @@
 import React from "react";
 import { LogoBar } from "../components/logoBar/LogoBar";
-import GreetingHeader from "../components/greetingHeader/GreetingHeader";
+import GreetingHeaderLoggedIn from "../components/greetingHeader/GreetingHeaderLoggedIn";
 import NewSearchFormFreelancer from "../components/newSearchForm/NewSearchFormFreelancer";
 
 function NewSearchFreelancerPage() {
     return (
         <>
             <LogoBar />
-            <GreetingHeader
+            <GreetingHeaderLoggedIn
                 headLine={"Let's get the search started."}
                 secondLine={"Want to go back?"}
                 linkName={"welcome-freelancer"}
