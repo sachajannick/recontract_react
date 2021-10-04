@@ -8,6 +8,10 @@ $blue: #5b618e;
   margin-top: 10vh;
   box-shadow: 0px 18px 53px rgba(255, 255, 255, 0.5);
 
+  &__button-container:hover {
+    cursor: pointer;
+  }
+
   &__dislike {
     background: none;
     position: absolute;

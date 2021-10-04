@@ -57,12 +57,14 @@ function SwipeCardHiring() {
 
     return (
         <div className={styles["swipe-card"]}>
-            <img
-                className={styles["swipe-card__dislike"]}
-                src={dislike}
-                alt="dislike"
-                onClick={() => swipe('left')}
-            />
+            <div className={styles["swipe-card__button-container"]}>
+                <img
+                    className={styles["swipe-card__dislike"]}
+                    src={dislike}
+                    alt="dislike"
+                    onClick={() => swipe('left')}
+                />
+            </div>
             {people.map((person, index) => (
                 <TinderCard
                     className={styles["swipe-card__container"]}
@@ -94,12 +96,14 @@ function SwipeCardHiring() {
                     </div>
                 </TinderCard>
             ))}
-            <img
-                className={styles["swipe-card__like"]}
-                src={like}
-                alt="like"
-                onClick={() => swipe('right')}
-            />
+            <div className={styles["swipe-card__button-container"]}>
+                <img
+                    className={styles["swipe-card__like"]}
+                    src={like}
+                    alt="like"
+                    onClick={() => swipe('right')}
+                />
+            </div>
         </div>
     )
 }
