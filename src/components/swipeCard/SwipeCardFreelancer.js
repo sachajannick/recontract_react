@@ -5,6 +5,7 @@ import demo2 from "../../../../recontract/src/assets/demo2.jpg"
 import TinderCard from "react-tinder-card";
 import dislike from "../../../../recontract/src/assets/dislike.png";
 import like from "../../../../recontract/src/assets/like.png";
+import {Link} from "react-router-dom";
 
 function SwipeCardFreelancer() {
     const [people, setPeople] = useState([
