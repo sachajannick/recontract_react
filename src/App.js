@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useContext} from "react";
 import './App.css';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
+import {AuthContext} from "./context/AuthContext";
 import HomePage from "./pages/HomePage";
 import GetStartedPage from "./pages/GetStartedPage";
 import GetStartedFreelancerPage from "./pages/GetStartedFreelancerPage";
@@ -22,6 +23,8 @@ import MatchedFreelancerPage from "./pages/MatchedFreelancerPage";
 import MatchedHiringPage from "./pages/MatchedHiringPage";
 
 function App() {
+  const { user } = useContext(AuthContext);
+
   return (
       <Router>
         <Switch>
@@ -47,40 +50,40 @@ function App() {
             <LoginHiringPage />
           </Route>
           <Route path="/logged-in-freelancer">
-            <LoggedInFreelancerPage />
+            {user !== null ? <LoggedInFreelancerPage /> : <Redirect to="/"/>}
           </Route>
           <Route path="/logged-in-hiring">
-            <LoggedInHiringPage />
+            {user !== null ? <LoggedInHiringPage /> : <Redirect to="/"/>}
           </Route>
           <Route path="/update-freelancer">
-            <UpdateFreelancerPage />
+            {user !== null ? <UpdateFreelancerPage /> : <Redirect to="/"/>}
           </Route>
           <Route path="/update-hiring">
-            <UpdateHiringPage />
+            {user !== null ? <UpdateHiringPage /> : <Redirect to="/"/>}
           </Route>
           <Route path="/new-search-freelancer">
-            <NewSearchFreelancerPage />
+            {user !== null ? <NewSearchFreelancerPage /> : <Redirect to="/"/>}
           </Route>
           <Route path="/new-search-hiring">
-            <NewSearchHiringPage />
+            {user !== null ? <NewSearchHiringPage /> : <Redirect to="/"/>}
           </Route>
           <Route path="/new-search-freelancer-success">
-            <NewSearchFreelancerSuccessPage />
+            {user !== null ? <NewSearchFreelancerSuccessPage /> : <Redirect to="/"/>}
           </Route>
           <Route path="/new-search-hiring-success">
-            <NewSearchHiringSuccessPage />
+            {user !== null ? <NewSearchHiringSuccessPage /> : <Redirect to="/"/>}
           </Route>
           <Route path="/swipe-panel-freelancer">
-            <SwipePanelFreelancerPage />
+            {user !== null ? <SwipePanelFreelancerPage /> : <Redirect to="/"/>}
           </Route>
           <Route path="/swipe-panel-hiring">
-            <SwipePanelHiringPage />
+            {user !== null ? <SwipePanelHiringPage /> : <Redirect to="/"/>}
           </Route>
           <Route path="/matched-freelancer">
-            <MatchedFreelancerPage />
+            {user !== null ? <MatchedFreelancerPage /> : <Redirect to="/"/>}
           </Route>
           <Route path="/matched-hiring">
-            <MatchedHiringPage />
+            {user !== null ? <MatchedHiringPage /> : <Redirect to="/"/>}
           </Route>
         </Switch>
       </Router>

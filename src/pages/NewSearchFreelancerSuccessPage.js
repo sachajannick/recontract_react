@@ -1,12 +1,12 @@
 import React from "react";
 import { LogoBar } from "../components/logoBar/LogoBar";
-import GreetingHeaderLoggedIn from "../components/greetingHeader/GreetingHeaderLoggedIn";
+import GreetingHeader from "../components/greetingHeader/GreetingHeader";
 
 function NewSearchFreelancerSuccessPage() {
     return (
         <>
             <LogoBar />
-            <GreetingHeaderLoggedIn
+            <GreetingHeader
                 headLine={"You've created your new search!"}
                 secondLine={"Want to start matching?"}
                 linkName={"swipe-panel-freelancer"}

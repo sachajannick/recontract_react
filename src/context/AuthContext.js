@@ -50,7 +50,7 @@ function AuthContextProvider({ children }) {
         }
     }, []);
 
-    async function loginFunction(userData) {
+    async function loginFreelancerFunction(userData) {
         setAuthState({
             user: {
                 username: userData.username,
@@ -59,7 +59,19 @@ function AuthContextProvider({ children }) {
             },
             status: 'done',
         });
-        history.push('/login');
+        history.push('/logged-in-freelancer');
+    }
+
+    async function loginHiringFunction(userData) {
+        setAuthState({
+            user: {
+                username: userData.username,
+                email: userData.email,
+                id: userData.id,
+            },
+            status: 'done',
+        });
+        history.push('/logged-in-hiring');
     }
 
     function logoutFunction() {
@@ -73,7 +85,8 @@ function AuthContextProvider({ children }) {
 
     const data = {
         ...authState,
-        login: loginFunction,
+        loginFreelancer: loginFreelancerFunction,
+        loginHiring: loginHiringFunction,
         logout: logoutFunction,
         fetch: fetchUserData,
     }

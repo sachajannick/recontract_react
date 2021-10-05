@@ -1,21 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./LoginForm.module.scss";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
 import { Button } from "../button/Button";
+import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
 
 function LoginFormHiring() {
     const { handleSubmit, formState: { errors }, register } = useForm();
-    const history = useHistory();
+    const { loginHiring } = useContext(AuthContext);
 
-    function onFormSubmit() {
-        history.push("/logged-in-hiring");
+    async function onSubmit(data) {
+        console.log(data);
+        try {
+            const result = await axios.post('http://localhost:8080/api/auth/signin', {
+                username: data.username,
+                password: data.password,
+            })
+            console.log(result.data);
+            localStorage.setItem('token', result.data.accessToken);
+            localStorage.setItem('id', result.data.id);
+            loginHiring(result.data);
+        } catch (e) {
+            console.error(e);
+            // toggleInvalidInput(true);
+        }
     }
 
     return (
         <div className={styles["login"]}>
             <div className={styles["login__container"]}>
-                <form onSubmit={handleSubmit(onFormSubmit)} className={styles["login__form"]}>
+                <form onSubmit={handleSubmit(onSubmit)} className={styles["login__form"]}>
 
                     <div>
                         <label
@@ -54,6 +68,7 @@ function LoginFormHiring() {
                     </div>
 
                     <Button
+                        type="submit"
                         btnText={"Continue"}
                     />
                 </form>
