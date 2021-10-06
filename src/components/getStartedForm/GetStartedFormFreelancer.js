@@ -173,27 +173,6 @@ function GetStartedFormFreelancer() {
                         {errors.password2 && <p>{errors.password2.message}</p>}
                     </div>
 
-                    {/*<div>*/}
-                    {/*    <label*/}
-                    {/*        htmlFor="profilePicture">*/}
-                    {/*        Profile picture*/}
-                    {/*    </label>*/}
-                    {/*    <input*/}
-                    {/*        ref={register}*/}
-                    {/*        className={styles["get-started__input"]}*/}
-                    {/*        type="file"*/}
-                    {/*        accept="image/*"*/}
-                    {/*        multiple="false"*/}
-                    {/*        {...register("profilePicture", {*/}
-                    {/*            required: {*/}
-                    {/*                value: true,*/}
-                    {/*                message: "Please upload your profile picture",*/}
-                    {/*            },*/}
-                    {/*        })}*/}
-                    {/*    />*/}
-                    {/*    {errors.profilePicture && <p>{errors.profilePicture.message}</p>}*/}
-                    {/*</div>*/}
-
                     <Button
                         type="submit"
                         btnText={"Continue"}

@@ -23,6 +23,14 @@ import MatchedFreelancerPage from "./pages/MatchedFreelancerPage";
 import MatchedHiringPage from "./pages/MatchedHiringPage";
 import UpdateFreelancerSuccessPage from "./pages/UpdateFreelancerSuccessPage";
 import UpdateHiringSuccessPage from "./pages/UpdateHiringSuccessPage";
+import UpdateSearchFreelancerPage from "./pages/UpdateSearchFreelancerPage";
+import UpdateSearchHiringPage from "./pages/UpdateSearchHiringPage";
+import UpdateSearchFreelancerSuccessPage from "./pages/UpdateSearchFreelancerSuccessPage";
+import UpdateSearchHiringSuccessPage from "./pages/UpdateSearchHiringSuccessPage";
+import UploadProfilePictureFreelancerPage from "./pages/UploadProfilePictureFreelancerPage";
+import UploadProfilePictureHiringPage from "./pages/UploadProfilePictureHiringPage";
+import UploadProfilePictureFreelancerSuccessPage from "./pages/UploadProfilePictureFreelancerSuccessPage";
+import UploadProfilePictureHiringSuccessPage from "./pages/UploadProfilePictureHiringSuccessPage";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -72,14 +80,38 @@ function App() {
           <Route path="/new-search-freelancer">
             {user !== null ? <NewSearchFreelancerPage /> : <Redirect to="/"/>}
           </Route>
-          <Route path="/new-search-hiring">
-            {user !== null ? <NewSearchHiringPage /> : <Redirect to="/"/>}
-          </Route>
           <Route path="/new-search-freelancer-success">
             {user !== null ? <NewSearchFreelancerSuccessPage /> : <Redirect to="/"/>}
           </Route>
+          <Route path="/new-search-hiring">
+            {user !== null ? <NewSearchHiringPage /> : <Redirect to="/"/>}
+          </Route>
           <Route path="/new-search-hiring-success">
             {user !== null ? <NewSearchHiringSuccessPage /> : <Redirect to="/"/>}
+          </Route>
+          <Route path="/update-search-freelancer">
+            {user !== null ? <UpdateSearchFreelancerPage /> : <Redirect to="/"/>}
+          </Route>
+          <Route path="/update-search-freelancer-success">
+            {user !== null ? <UpdateSearchFreelancerSuccessPage /> : <Redirect to="/"/>}
+          </Route>
+          <Route path="/update-search-hiring">
+            {user !== null ? <UpdateSearchHiringPage /> : <Redirect to="/"/>}
+          </Route>
+          <Route path="/update-search-hiring-success">
+            {user !== null ? <UpdateSearchHiringSuccessPage /> : <Redirect to="/"/>}
+          </Route>
+          <Route path="/upload-picture-freelancer">
+            {user !== null ? <UploadProfilePictureFreelancerPage /> : <Redirect to="/"/>}
+          </Route>
+          <Route path="/upload-picture-freelancer-success">
+            {user !== null ? <UploadProfilePictureFreelancerSuccessPage /> : <Redirect to="/"/>}
+          </Route>
+          <Route path="/upload-picture-hiring">
+            {user !== null ? <UploadProfilePictureHiringPage /> : <Redirect to="/"/>}
+          </Route>
+          <Route path="/upload-picture-hiring-success">
+            {user !== null ? <UploadProfilePictureHiringSuccessPage /> : <Redirect to="/"/>}
           </Route>
           <Route path="/swipe-panel-freelancer">
             {user !== null ? <SwipePanelFreelancerPage /> : <Redirect to="/"/>}

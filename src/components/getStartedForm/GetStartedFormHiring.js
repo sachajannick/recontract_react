@@ -181,28 +181,6 @@ function GetStartedFormHiring() {
                         {errors.password2 && <p>{errors.password2.message}</p>}
                     </div>
 
-                    {/*<div>*/}
-                    {/*    <label*/}
-                    {/*        htmlFor="profilePicture">*/}
-                    {/*        Profile picture*/}
-                    {/*    </label>*/}
-                    {/*    <input*/}
-                    {/*        ref={register}*/}
-                    {/*        className={styles["get-started__input"]}*/}
-                    {/*        type="file"*/}
-                    {/*        id="file"*/}
-                    {/*        accept="image/*"*/}
-                    {/*        multiple="false"*/}
-                    {/*        {...register("file", {*/}
-                    {/*            required: {*/}
-                    {/*                value: true,*/}
-                    {/*                message: "Please upload your profile picture",*/}
-                    {/*            },*/}
-                    {/*        })}*/}
-                    {/*    />*/}
-                    {/*    {errors.file && <p>{errors.file.message}</p>}*/}
-                    {/*</div>*/}
-
                     <Button
                         type="submit"
                         btnText={"Continue"}

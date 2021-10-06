@@ -1,13 +1,13 @@
 import React, {useState} from "react";
-import styles from "./NewSearchForm.module.scss"
+import styles from "./UpdateSearchForm.module.scss"
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { Button } from "../button/Button";
 import axios from "axios";
 
-function NewSearchFormHiring() {
+function UpdateSearchFormHiring() {
     const { handleSubmit, formState: { errors }, register } = useForm();
-    const [newSearchSuccess, toggleNewSearchSuccess] = useState();
+    const [updateSearchSuccess, toggleUpdateSearchSuccess] = useState();
     const history = useHistory();
     const jwtToken = localStorage.getItem('token');
     const userId = localStorage.getItem('id');
@@ -26,25 +26,25 @@ function NewSearchFormHiring() {
                 }
             })
             console.log(result);
-            toggleNewSearchSuccess(true);
-            history.push("/new-search-hiring-success");
+            toggleUpdateSearchSuccess(true);
+            history.push("/update-search-hiring-success");
         } catch (e) {
             console.error(e)
         }
     }
 
     return (
-        <div className={styles["new-search"]}>
-            <div className={styles["new-search__container"]}>
-                <form onSubmit={handleSubmit(onSubmit)} className={styles["new-search__form"]}>
+        <div className={styles["update-search"]}>
+            <div className={styles["update-search__container"]}>
+                <form onSubmit={handleSubmit(onSubmit)} className={styles["update-search__form"]}>
 
                     <div>
                         <label
                             htmlFor="functionTitle">
-                            I want to hire someone as:
+                            I want to get hired as:
                         </label>
                         <input
-                            className={styles["new-search__input"]}
+                            className={styles["update-search__input"]}
                             type="text"
                             {...register("functionTitle", {
                                 required: {
@@ -59,10 +59,10 @@ function NewSearchFormHiring() {
                     <div>
                         <label
                             htmlFor="amount">
-                            I want to spend around (in € per hour):
+                            I want to earn around (in € per hour):
                         </label>
                         <input
-                            className={styles["new-search__input"]}
+                            className={styles["update-search__input"]}
                             type="number"
                             {...register("amount", {
                                 required: {
@@ -75,13 +75,15 @@ function NewSearchFormHiring() {
                     </div>
 
                     <Button
+                        type="submit"
                         btnText={"Continue"}
                     />
-                    {newSearchSuccess && <p>Search is created!</p>}
+
+                    {updateSearchSuccess && <p>Search is updated!</p>}
                 </form>
             </div>
         </div>
     );
 }
 
-export default NewSearchFormHiring;
+export default UpdateSearchFormHiring;

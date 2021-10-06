@@ -20,6 +20,16 @@ function LoggedInChooseHiring() {
                 className={styles["logged-in-choose__link"]}>
                 I want to create a new search.
             </Link>
+            <Link
+                to={"/update-search-hiring"}
+                className={styles["logged-in-choose__link"]}>
+                I want to update my search.
+            </Link>
+            <Link
+                to={"/upload-picture-hiring"}
+                className={styles["logged-in-choose__link"]}>
+                I want to upload or change my profile picture.
+            </Link>
         </div>
     );
 }

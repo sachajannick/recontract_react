@@ -1,0 +1,34 @@
+$taupe: #dfac89;
+
+.update-search {
+  width: 100%;
+  height: 100%;
+  padding: 3vw 0 0 10vw;
+
+  &__container {
+    width: 29vw;
+  }
+
+  &__form {
+    display: grid;
+    grid-template-rows: auto;
+    grid-gap: 3.5vw;
+
+    label {
+      font-size: calc(5px + 1vw);
+    }
+
+    p {
+      color: $taupe;
+      font-size: calc(5px + 1vw);
+    }
+  }
+
+  &__input {
+    width: 29vw;
+    padding: 1.5vw;
+    border: none;
+    border-bottom: 1px solid $taupe;
+    font-size: calc(5px + 1vw);
+  }
+}

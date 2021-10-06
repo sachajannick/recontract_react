@@ -18,6 +18,7 @@ function NewSearchFormFreelancer() {
             const result = await axios.post(`http://localhost:8080/api/searches/id/${userId}`, {
                 functionTitle: data.functionTitle,
                 amount: data.amount,
+                searchId: data.searchId,
             }, {
                 headers: {
                     "Content-Type": "application/json",
