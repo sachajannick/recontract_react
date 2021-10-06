@@ -1,88 +1,93 @@
 import React, {useRef, useState} from "react";
-import styles from "./GetStartedForm.module.scss";
+import styles from "./UpdateForm.module.scss";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { Button } from "../button/Button";
 import axios from "axios";
 
-function GetStartedFormHiring() {
+function UpdateFormFreelancer() {
     const { handleSubmit, formState: { errors }, register, watch } = useForm();
     const password = useRef({});
-    password.current = watch("password");
-    const [ registerSuccess, toggleRegisterSuccess ] = useState(false);
+    password.current = watch("newPassword");
+    const [ updateSuccess, toggleUpdateSuccess ] = useState(false);
     const history = useHistory();
+    const userId = localStorage.getItem('id');
+    const jwtToken = localStorage.getItem('token');
 
     async function onSubmit(data) {
         console.log(data);
         try {
-            const result = await axios.post('http://localhost:8080/api/auth/signup', {
-                username: data.username,
-                password: data.password,
-                fullName: data.fullName,
-                email: data.email,
-                location: data.location,
-                headline: data.headline,
-                hiringOrFreelancer: "hiring",
-                role: ["user"]
-            })
+            const result = await axios.patch(`http://localhost:8080/api/users/id/${userId}`, {
+                newUsername: data.newUsername,
+                newPassword: data.newPassword,
+                newFullName: data.newFullName,
+                newEmail: data.newEmail,
+                newLocation: data.newLocation,
+                newHeadline: data.newHeadline,
+            },{
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${jwtToken}`,
+                }},
+            )
             console.log(result);
-            toggleRegisterSuccess(true);
-            history.push('/login-hiring');
+            toggleUpdateSuccess(true);
+            history.push('/update-freelancer-success');
         } catch (e) {
             console.error(e);
         }
     }
 
     return (
-        <div className={styles["get-started"]}>
-            <div className={styles["get-started__container"]}>
-                <form onSubmit={handleSubmit(onSubmit)} className={styles["get-started__form"]}>
+        <div className={styles["update"]}>
+            <div className={styles["update__container"]}>
+                <form onSubmit={handleSubmit(onSubmit)} className={styles["update__form"]}>
 
                     <div>
                         <label
-                            htmlFor="fullName">
+                            htmlFor="newFullName">
                             Full name
                         </label>
                         <input
-                            className={styles["get-started__input"]}
+                            className={styles["update__input"]}
                             type="text"
-                            {...register("fullName", {
+                            {...register("newFullName", {
                                 required: {
                                     value: true,
                                     message: "Please enter your full name",
                                 },
                             })}
                         />
-                        {errors.fullName && <p>{errors.fullName.message}</p>}
+                        {errors.newFullName && <p>{errors.newFullName.message}</p>}
                     </div>
 
                     <div>
                         <label
-                            htmlFor="username">
+                            htmlFor="newUsername">
                             Username
                         </label>
                         <input
-                            className={styles["get-started__input"]}
+                            className={styles["update__input"]}
                             type="text"
-                            {...register("username", {
+                            {...register("newUsername", {
                                 required: {
                                     value: true,
                                     message: "Please enter your username",
                                 },
                             })}
                         />
-                        {errors.username && <p>{errors.username.message}</p>}
+                        {errors.newUsername && <p>{errors.newUsername.message}</p>}
                     </div>
 
                     <div>
                         <label
-                            htmlFor="email">
+                            htmlFor="newEmail">
                             Email
                         </label>
                         <input
-                            className={styles["get-started__input"]}
+                            className={styles["update__input"]}
                             type="email"
-                            {...register("email", {
+                            {...register("newEmail", {
                                 required: {
                                     value: true,
                                     pattern: !/\S+@\S+\.\S+/,
@@ -90,128 +95,98 @@ function GetStartedFormHiring() {
                                 },
                             })}
                         />
-                        {errors.email && <p>{errors.email.message}</p>}
+                        {errors.newEmail && <p>{errors.newEmail.message}</p>}
                     </div>
 
                     <div>
                         <label
-                            htmlFor="location">
+                            htmlFor="newLocation">
                             Location
                         </label>
                         <input
-                            className={styles["get-started__input"]}
+                            className={styles["update__input"]}
                             type="text"
-                            {...register("location", {
+                            {...register("newLocation", {
                                 required: {
                                     value: true,
                                     message: "Please enter your location",
                                 },
                             })}
                         />
-                        {errors.location && <p>{errors.location.message}</p>}
+                        {errors.newLocation && <p>{errors.newLocation.message}</p>}
                     </div>
 
                     <div>
                         <label
-                            htmlFor="headline">
+                            htmlFor="newHeadline">
                             Headline (min. 40 characters)
                         </label>
                         <textarea rows="1" cols="16"
-                                  className={styles["get-started__input"]}
-                                  {...register("headline", {
+                                  className={styles["update__input"]}
+                                  {...register("newHeadline", {
                                       required: {
                                           value: true,
                                           message: "Please enter a headline",
                                       },
-                                      minLength: {
-                                          value: 40,
-                                          message: "Headline must be at least 40 characters"
-                                      },
-                                      maxLength: {
-                                          value: 70,
-                                          message: "Headline can be max 70 characters"
-                                      }
                                   })}
                         />
-                        {errors.headline && <p>{errors.headline.message}</p>}
+                        {errors.newHeadline && <p>{errors.newHeadline.message}</p>}
                     </div>
 
                     <div>
                         <label
-                            htmlFor="password">
+                            htmlFor="newPassword">
                             Password (min. 8 characters)
                         </label>
                         <input
-                            className={styles["get-started__input"]}
+                            className={styles["update__input"]}
                             type="password"
-                            {...register("password", {
+                            {...register("newPassword", {
                                 required: {
                                     value: true,
                                     message: "Please enter your password",
                                 },
                                 minLength: {
                                     value: 8,
-                                    message: "Password must be at least 8 characters"
+                                    message: "Password needs to be at least 8 characters"
                                 },
                             })}
                         />
-                        {errors.password && <p>{errors.password.message}</p>}
+                        {errors.newPassword && <p>{errors.newPassword.message}</p>}
                     </div>
 
                     <div>
                         <label
-                            htmlFor="password2">
+                            htmlFor="newPassword2">
                             Confirm password
                         </label>
                         <input
-                            className={styles["get-started__input"]}
+                            className={styles["update__input"]}
                             type="password"
-                            {...register("password2", {
+                            {...register("newPassword2", {
                                 required: {
                                     value: true,
                                     message: "Please re-enter your password",
                                 },
                                 minLength: {
                                     value: 8,
-                                    message: "Password must be at least 8 characters",
+                                    message: "Password needs to be at least 8 characters"
                                 },
                                 validate: value => value === password.current || "Your entered passwords don't match"
                             })}
                         />
-                        {errors.password2 && <p>{errors.password2.message}</p>}
+                        {errors.newPassword2 && <p>{errors.newPassword2.message}</p>}
                     </div>
-
-                    {/*<div>*/}
-                    {/*    <label*/}
-                    {/*        htmlFor="profilePicture">*/}
-                    {/*        Profile picture*/}
-                    {/*    </label>*/}
-                    {/*    <input*/}
-                    {/*        ref={register}*/}
-                    {/*        className={styles["get-started__input"]}*/}
-                    {/*        type="file"*/}
-                    {/*        id="file"*/}
-                    {/*        accept="image/*"*/}
-                    {/*        multiple="false"*/}
-                    {/*        {...register("file", {*/}
-                    {/*            required: {*/}
-                    {/*                value: true,*/}
-                    {/*                message: "Please upload your profile picture",*/}
-                    {/*            },*/}
-                    {/*        })}*/}
-                    {/*    />*/}
-                    {/*    {errors.file && <p>{errors.file.message}</p>}*/}
-                    {/*</div>*/}
 
                     <Button
                         type="submit"
                         btnText={"Continue"}
                     />
-                    {registerSuccess && <p>Registration successful!</p>}
+                    {updateSuccess && <p>Registration successful!</p>}
                 </form>
             </div>
         </div>
     );
 }
 
-export default GetStartedFormHiring;
+export default UpdateFormFreelancer;

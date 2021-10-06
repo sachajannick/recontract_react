@@ -1,8 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
 import styles from "./LoggedInChoose.module.scss";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 function LoggedInChooseFreelancer() {
+    const { user , logout } = useContext(AuthContext);
+
+    function onSubmit() {
+        logout();
+    }
+
     return (
         <div className={styles["logged-in-choose"]}>
             <Link

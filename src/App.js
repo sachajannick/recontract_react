@@ -21,6 +21,8 @@ import SwipePanelFreelancerPage from "./pages/SwipePanelFreelancerPage";
 import SwipePanelHiringPage from "./pages/SwipePanelHiringPage";
 import MatchedFreelancerPage from "./pages/MatchedFreelancerPage";
 import MatchedHiringPage from "./pages/MatchedHiringPage";
+import UpdateFreelancerSuccessPage from "./pages/UpdateFreelancerSuccessPage";
+import UpdateHiringSuccessPage from "./pages/UpdateHiringSuccessPage";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -58,8 +60,14 @@ function App() {
           <Route path="/update-freelancer">
             {user !== null ? <UpdateFreelancerPage /> : <Redirect to="/"/>}
           </Route>
+          <Route path="/update-freelancer-success">
+            {user !== null ? <UpdateFreelancerSuccessPage /> : <Redirect to="/"/>}
+          </Route>
           <Route path="/update-hiring">
             {user !== null ? <UpdateHiringPage /> : <Redirect to="/"/>}
+          </Route>
+          <Route path="/update-hiring-success">
+            {user !== null ? <UpdateHiringSuccessPage /> : <Redirect to="/"/>}
           </Route>
           <Route path="/new-search-freelancer">
             {user !== null ? <NewSearchFreelancerPage /> : <Redirect to="/"/>}

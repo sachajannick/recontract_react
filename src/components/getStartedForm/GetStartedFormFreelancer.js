@@ -1,31 +1,42 @@
-import React, { useRef } from "react";
+import React, {useRef, useState} from "react";
 import styles from "./GetStartedForm.module.scss";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { Button } from "../button/Button";
+import axios from "axios";
 
 function GetStartedFormFreelancer() {
     const { handleSubmit, formState: { errors }, register, watch } = useForm();
     const password = useRef({});
     password.current = watch("password");
+    const [ registerSuccess, toggleRegisterSuccess ] = useState(false);
     const history = useHistory();
 
-    // const onSubmit = (data) => {
-    //     const storageRef = app.storage().ref();
-    //     const fileRef = storageRef.child(data.image[0].name);
-    //     fileRef.put(data.image[0]).then(() => {
-    //
-    //     });
-    // }
-
-    function onFormSubmit() {
-        history.push("/logged-in-freelancer");
+    async function onSubmit(data) {
+        console.log(data);
+        try {
+            const result = await axios.post('http://localhost:8080/api/auth/signup', {
+                username: data.username,
+                password: data.password,
+                fullName: data.fullName,
+                email: data.email,
+                location: data.location,
+                headline: data.headline,
+                hiringOrFreelancer: "freelancer",
+                role: ["user"]
+            })
+            console.log(result);
+            toggleRegisterSuccess(true);
+            history.push('/login-freelancer');
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     return (
         <div className={styles["get-started"]}>
             <div className={styles["get-started__container"]}>
-                <form onSubmit={handleSubmit(onFormSubmit)} className={styles["get-started__form"]}>
+                <form onSubmit={handleSubmit(onSubmit)} className={styles["get-started__form"]}>
 
                     <div>
                         <label
@@ -156,36 +167,38 @@ function GetStartedFormFreelancer() {
                                     value: 8,
                                     message: "Password needs to be at least 8 characters"
                                 },
-                                validate: value => value === password.current || "The passwords don't match"
+                                validate: value => value === password.current || "Your entered passwords don't match"
                             })}
                         />
                         {errors.password2 && <p>{errors.password2.message}</p>}
                     </div>
 
-                    <div>
-                        <label
-                            htmlFor="profilePicture">
-                            Profile picture
-                        </label>
-                        <input
-                            ref={register}
-                            className={styles["get-started__input"]}
-                            type="file"
-                            accept="image/*"
-                            multiple="false"
-                            {...register("profilePicture", {
-                                required: {
-                                    value: true,
-                                    message: "Please upload your profile picture",
-                                },
-                            })}
-                        />
-                        {errors.profilePicture && <p>{errors.profilePicture.message}</p>}
-                    </div>
+                    {/*<div>*/}
+                    {/*    <label*/}
+                    {/*        htmlFor="profilePicture">*/}
+                    {/*        Profile picture*/}
+                    {/*    </label>*/}
+                    {/*    <input*/}
+                    {/*        ref={register}*/}
+                    {/*        className={styles["get-started__input"]}*/}
+                    {/*        type="file"*/}
+                    {/*        accept="image/*"*/}
+                    {/*        multiple="false"*/}
+                    {/*        {...register("profilePicture", {*/}
+                    {/*            required: {*/}
+                    {/*                value: true,*/}
+                    {/*                message: "Please upload your profile picture",*/}
+                    {/*            },*/}
+                    {/*        })}*/}
+                    {/*    />*/}
+                    {/*    {errors.profilePicture && <p>{errors.profilePicture.message}</p>}*/}
+                    {/*</div>*/}
 
                     <Button
+                        type="submit"
                         btnText={"Continue"}
                     />
+                    {registerSuccess && <p>Registration successful!</p>}
                 </form>
             </div>
         </div>

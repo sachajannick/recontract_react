@@ -12,16 +12,15 @@ function GreetingHeaderLogOut() {
 
     return (
         <div className={styles["greeting-header"]}>
-            <h2>Welcome!</h2>
-            <h3>Please select what you want to do.</h3>
+            <h2>Welcome back!</h2>
+            <h3>Please select what you want to do. Want to log out?&nbsp;
 
-            {user !== null && <button
+            {user !== null && <span
                 className={styles["greeting-header__link"]}
-                type="button"
-                onClick={onSubmit}
-            >
-                 Click here to logout.
-            </button>}
+                onClick={onSubmit}>
+                 Click here.
+            </span>}
+            </h3>
         </div>
     );
 }

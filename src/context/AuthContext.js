@@ -29,6 +29,10 @@ function AuthContextProvider({ children }) {
                     username: result.data.username,
                     password: result.data.password,
                     id: result.data.id,
+                    fullName: result.data.fullName,
+                    email: result.data.email,
+                    location: result.data.location,
+                    headline: result.data.headline,
                 },
                 status: 'done',
             });
@@ -59,7 +63,6 @@ function AuthContextProvider({ children }) {
             },
             status: 'done',
         });
-        history.push('/logged-in-freelancer');
     }
 
     async function loginHiringFunction(userData) {
@@ -71,7 +74,6 @@ function AuthContextProvider({ children }) {
             },
             status: 'done',
         });
-        history.push('/logged-in-hiring');
     }
 
     function logoutFunction() {

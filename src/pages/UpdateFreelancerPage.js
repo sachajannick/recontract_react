@@ -1,7 +1,7 @@
 import React from "react";
 import { LogoBar } from "../components/logoBar/LogoBar";
 import GreetingHeader from "../components/greetingHeader/GreetingHeader";
-import GetStartedFormFreelancer from "../components/getStartedForm/GetStartedFormFreelancer";
+import UpdateFormFreelancer from "../components/updateForm/UpdateFormFreelancer";
 
 function UpdateFreelancerPage() {
     return (
@@ -12,7 +12,7 @@ function UpdateFreelancerPage() {
                 secondLine={"Want to go back?"}
                 linkName={"logged-in-freelancer"}
             />
-            <GetStartedFormFreelancer />
+            <UpdateFormFreelancer />
         </>
     );
 }

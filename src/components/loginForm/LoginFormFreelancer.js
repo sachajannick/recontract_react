@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
+import React, {useContext, useState} from "react";
 import styles from "./LoginForm.module.scss";
 import { useForm } from "react-hook-form";
 import { Button } from "../button/Button";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
 function LoginFormFreelancer() {
     const { handleSubmit, formState: { errors }, register } = useForm();
+    const [ invalidInput, toggleInvalidInput ] = useState(false);
     const { loginFreelancer } = useContext(AuthContext);
+    const history = useHistory();
 
     async function onSubmit(data) {
         console.log(data);
@@ -20,9 +23,10 @@ function LoginFormFreelancer() {
             localStorage.setItem('token', result.data.accessToken);
             localStorage.setItem('id', result.data.id);
             loginFreelancer(result.data);
+            history.push('/logged-in-freelancer');
         } catch (e) {
             console.error(e);
-            // toggleInvalidInput(true);
+            toggleInvalidInput(true);
         }
     }
 
@@ -65,6 +69,7 @@ function LoginFormFreelancer() {
                             })}
                         />
                         {errors.password && <p>{errors.password.message}</p>}
+                        {invalidInput && <p>Invalid input. Please try again! </p>}
                     </div>
 
                     <Button
