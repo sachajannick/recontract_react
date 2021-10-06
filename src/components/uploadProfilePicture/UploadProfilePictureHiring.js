@@ -27,7 +27,7 @@ function UploadProfilePictureHiring() {
             console.log(result);
             console.log(result);
             toggleUploadSuccess(true);
-            history.push('/upload-picture-freelancer-success');
+            history.push('/upload-picture-hiring-success');
         } catch (e) {
             console.error(e);
         }
