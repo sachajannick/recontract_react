@@ -83,7 +83,7 @@ function AuthContextProvider({ children }) {
 
     return (
         <AuthContext.Provider value={data}>
-            {authState.status === 'done' ? children : <p>Please refresh this page to return to the homepage!</p>}
+            {authState.status === 'done' ? children : <p>Please refresh this page if you see this message.</p>}
         </AuthContext.Provider>
     );
 }
