@@ -9,7 +9,7 @@ import {useHistory} from "react-router-dom";
 function LoginFormHiring() {
     const { handleSubmit, formState: { errors }, register } = useForm();
     const [ invalidInput, toggleInvalidInput ] = useState(false);
-    const { loginHiring } = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
     const history = useHistory();
 
     async function onSubmit(data) {
@@ -22,7 +22,7 @@ function LoginFormHiring() {
             console.log(result.data);
             localStorage.setItem('token', result.data.accessToken);
             localStorage.setItem('id', result.data.id);
-            loginHiring(result.data);
+            login(result.data);
             history.push('/logged-in-hiring');
         } catch (e) {
             console.error(e);

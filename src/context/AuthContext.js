@@ -54,18 +54,7 @@ function AuthContextProvider({ children }) {
         }
     }, []);
 
-    async function loginFreelancerFunction(userData) {
-        setAuthState({
-            user: {
-                username: userData.username,
-                email: userData.email,
-                id: userData.id,
-            },
-            status: 'done',
-        });
-    }
-
-    async function loginHiringFunction(userData) {
+    async function loginFunction(userData) {
         setAuthState({
             user: {
                 username: userData.username,
@@ -87,8 +76,7 @@ function AuthContextProvider({ children }) {
 
     const data = {
         ...authState,
-        loginFreelancer: loginFreelancerFunction,
-        loginHiring: loginHiringFunction,
+        login: loginFunction,
         logout: logoutFunction,
         fetch: fetchUserData,
     }

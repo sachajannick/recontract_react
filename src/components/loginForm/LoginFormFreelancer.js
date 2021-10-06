@@ -9,7 +9,7 @@ import {useHistory} from "react-router-dom";
 function LoginFormFreelancer() {
     const { handleSubmit, formState: { errors }, register } = useForm();
     const [ invalidInput, toggleInvalidInput ] = useState(false);
-    const { loginFreelancer } = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
     const history = useHistory();
 
     async function onSubmit(data) {
@@ -22,7 +22,7 @@ function LoginFormFreelancer() {
             console.log(result.data);
             localStorage.setItem('token', result.data.accessToken);
             localStorage.setItem('id', result.data.id);
-            loginFreelancer(result.data);
+            login(result.data);
             history.push('/logged-in-freelancer');
         } catch (e) {
             console.error(e);
