@@ -13,10 +13,16 @@ function SwipeCardFreelancer() {
     const userId = localStorage.getItem('id');
 
     useEffect(() => {
-        async function fetchSearchData() {
+        async function fetchUserData() {
             const result = await axios.get(`http://localhost:8080/api/users/id/${userId}`);
 
             setPeople(result.data)
+        }
+    })
+
+    useEffect(() => {
+        async function fetchSearchData() {
+            const searchResult = await axios.get(`http://localhost:8080/api/searches/id/${userId}`);
         }
     })
 

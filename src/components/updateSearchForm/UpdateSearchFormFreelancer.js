@@ -16,15 +16,16 @@ function UpdateSearchFormFreelancer() {
 
     async function fetchSearches() {
         try {
-            const searches = await axios.get(`http://localhost:8080/api/searches/id/all`, {
+            const searches = await axios.get(`http://localhost:8080/api/searches/id/all2`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${jwtToken}`,
                 }
             })
+            console.log(searches);
             console.log(searches.data);
-            const result = GetAllSearches(searches.data);
-            console.log(result)
+            // const result = GetAllSearches(searches.data);
+            // console.log(result)
         } catch (e) {
             console.error(e);
         }
