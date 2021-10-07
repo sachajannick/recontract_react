@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import styles from "./SwipeCard.module.scss"
 import demo1 from "../../../../recontract/src/assets/demo1.jpg"
 import demo2 from "../../../../recontract/src/assets/demo2.jpg"
@@ -6,26 +6,19 @@ import TinderCard from "react-tinder-card";
 import dislike from "../../../../recontract/src/assets/dislike.png";
 import like from "../../../../recontract/src/assets/like.png";
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 function SwipeCardFreelancer() {
-    const [people, setPeople] = useState([
-        {
-            name: "Sam Kessels",
-            url: demo1,
-            amount: "€80",
-            location: "Amstelveen",
-            functionTitle: "Wanted: " + "Java Developer",
-            headline: '"At KPMG, we inspire confidence and empower change in all we do."'
-        },
-        {
-            name: "Sarah Fadim",
-            url: demo2,
-            amount: "€85",
-            location: "Amsterdam",
-            functionTitle: "Medior Java Developer",
-            headline: '"I am focussed on creating meaningful solutions through code."'
+    const [people, setPeople] = useState([]);
+    const userId = localStorage.getItem('id');
+
+    useEffect(() => {
+        async function fetchSearchData() {
+            const result = await axios.get(`http://localhost:8080/api/users/id/${userId}`);
+
+            setPeople(result.data)
         }
-    ]);
+    })
 
     const [lastDirection, setLastDirection] = useState();
 

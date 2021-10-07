@@ -33,6 +33,7 @@ function AuthContextProvider({ children }) {
                     email: result.data.email,
                     location: result.data.location,
                     headline: result.data.headline,
+                    hiringOrFreelancer: result.data.hiringOrFreelancer,
                 },
                 status: 'done',
             });

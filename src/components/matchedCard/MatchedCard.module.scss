@@ -1,5 +1,6 @@
 $taupe: #dfac89;
 $blue: #5b618e;
+$light-grey: #b4b4b4;
 
 .matched-card {
   display: flex;
@@ -70,6 +71,16 @@ $blue: #5b618e;
       font-size: calc(7px + 1vw);
       color: $taupe;
       font-weight: normal;
+    }
+
+    &__link {
+      text-decoration: none;
+
+      &:hover {
+        color: $light-grey;
+        cursor: pointer;
+        transition: all 0.3s ease-out;
+      }
     }
   }
 }

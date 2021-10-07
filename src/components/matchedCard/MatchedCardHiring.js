@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import styles from "./MatchedCard.module.scss";
 import demo2 from "../../../../recontract/src/assets/demo2.jpg";
 import TinderCard from "react-tinder-card";
+import {Link} from "react-router-dom";
 
 function MatchedCardHiring() {
     const [people, setPeople] = useState([
@@ -35,8 +36,13 @@ function MatchedCardHiring() {
 
                     <div className={styles["matched-card__right"]}>
                         <div className={styles["matched-card__aside"]}>
-                            <h1 className={styles["matched-card__container__right__aside__first"]}>You've got a match!</h1>
-                            <h4 className={styles["matched-card__container__right__aside__second"]}>Mail your next client.</h4>
+                            <h1>You've got a match!</h1>
+                            <h4>Mail your next client.&nbsp;
+                                <Link
+                                    className={styles["matched-card__aside__link"]}
+                                    to="/logged-in-freelancer">
+                                    Click here to go back.
+                                </Link></h4>
                         </div>
                     </div>
                 </TinderCard>

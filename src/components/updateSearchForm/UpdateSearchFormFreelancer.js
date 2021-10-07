@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { Button } from "../button/Button";
 import axios from "axios";
+import GetAllSearches from "../../helpers/GetAllSearches";
 
 function UpdateSearchFormFreelancer() {
     const { handleSubmit, formState: { errors }, register } = useForm();
@@ -11,6 +12,25 @@ function UpdateSearchFormFreelancer() {
     const history = useHistory();
     const jwtToken = localStorage.getItem('token');
     const searchId = localStorage.getItem('searchId');
+    const userId = localStorage.getItem('userId');
+
+    async function fetchSearches() {
+        try {
+            const searches = await axios.get(`http://localhost:8080/api/searches/id/all`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${jwtToken}`,
+                }
+            })
+            console.log(searches.data);
+            const result = GetAllSearches(searches.data);
+            console.log(result)
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    fetchSearches()
 
     async function onSubmit(data) {
         console.log(data);
@@ -28,7 +48,7 @@ function UpdateSearchFormFreelancer() {
             toggleUpdateSearchSuccess(true);
             history.push("/update-search-freelancer-success");
         } catch (e) {
-            console.error(e)
+            console.error(e);
         }
     }
 

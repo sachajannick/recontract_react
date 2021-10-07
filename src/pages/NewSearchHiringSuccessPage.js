@@ -8,8 +8,8 @@ function NewSearchHiringSuccessPage() {
             <LogoBar />
             <GreetingHeader
                 headLine={"You've created your new search!"}
-                secondLine={"Want to start matching?"}
-                linkName={"swipe-panel-hiring"}
+                secondLine={"Want to go back"}
+                linkName={"logged-in-hiring"}
             />
         </>
     )
