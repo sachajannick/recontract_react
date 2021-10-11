@@ -1,31 +1,30 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./UpdateSearchForm.module.scss"
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { Button } from "../button/Button";
 import axios from "axios";
-import GetAllSearches from "../../helpers/GetAllSearches";
 
 function UpdateSearchFormFreelancer() {
+
+    const [searchId, setSearchId] = useState();
+
     const { handleSubmit, formState: { errors }, register } = useForm();
     const [updateSearchSuccess, toggleUpdateSearchSuccess] = useState();
     const history = useHistory();
     const jwtToken = localStorage.getItem('token');
-    const searchId = localStorage.getItem('searchId');
-    const userId = localStorage.getItem('userId');
+    const userId = localStorage.getItem('id');
 
     async function fetchSearches() {
         try {
-            const searches = await axios.get(`http://localhost:8080/api/searches/id/all2`, {
+            const searches = await axios.get(`http://localhost:8080/api/searches/id/all2/id/${userId}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${jwtToken}`,
                 }
             })
-            console.log(searches);
             console.log(searches.data);
-            // const result = GetAllSearches(searches.data);
-            // console.log(result)
+            setSearchId(searches.data);
         } catch (e) {
             console.error(e);
         }

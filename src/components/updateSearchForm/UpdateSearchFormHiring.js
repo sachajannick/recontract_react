@@ -6,19 +6,38 @@ import { Button } from "../button/Button";
 import axios from "axios";
 
 function UpdateSearchFormHiring() {
+
+    const [searchId, setSearchId] = useState();
+
     const { handleSubmit, formState: { errors }, register } = useForm();
     const [updateSearchSuccess, toggleUpdateSearchSuccess] = useState();
     const history = useHistory();
     const jwtToken = localStorage.getItem('token');
     const userId = localStorage.getItem('id');
 
+    async function fetchSearches() {
+        try {
+            const searches = await axios.get(`http://localhost:8080/api/searches/id/all2/id/${userId}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${jwtToken}`,
+                }
+            })
+            console.log(searches.data);
+            setSearchId(searches.data);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    fetchSearches()
+
     async function onSubmit(data) {
         console.log(data);
         try {
-            const result = await axios.post(`http://localhost:8080/api/searches/id/${userId}`, {
-                functionTitle: data.functionTitle,
-                amount: data.amount,
-                searchId: data.searchId,
+            const result = await axios.patch(`http://localhost:8080/api/searches/id/${searchId}`, {
+                newFunctionTitle: data.newFunctionTitle,
+                newAmount: data.newAmount,
             }, {
                 headers: {
                     "Content-Type": "application/json",
@@ -27,9 +46,9 @@ function UpdateSearchFormHiring() {
             })
             console.log(result);
             toggleUpdateSearchSuccess(true);
-            history.push("/update-search-hiring-success");
+            history.push("/update-search-freelancer-success");
         } catch (e) {
-            console.error(e)
+            console.error(e);
         }
     }
 
@@ -40,38 +59,38 @@ function UpdateSearchFormHiring() {
 
                     <div>
                         <label
-                            htmlFor="functionTitle">
+                            htmlFor="newFunctionTitle">
                             I want to get hired as:
                         </label>
                         <input
                             className={styles["update-search__input"]}
                             type="text"
-                            {...register("functionTitle", {
+                            {...register("newFunctionTitle", {
                                 required: {
                                     value: true,
                                     message: "Please enter a function title",
                                 },
                             })}
                         />
-                        {errors.functionTitle && <p>{errors.functionTitle.message}</p>}
+                        {errors.newFunctionTitle && <p>{errors.newFunctionTitle.message}</p>}
                     </div>
 
                     <div>
                         <label
-                            htmlFor="amount">
+                            htmlFor="newAmount">
                             I want to earn around (in € per hour):
                         </label>
                         <input
                             className={styles["update-search__input"]}
                             type="number"
-                            {...register("amount", {
+                            {...register("newAmount", {
                                 required: {
                                     value: true,
                                     message: "Please enter an amount",
                                 },
                             })}
                         />
-                        {errors.amount && <p>{errors.amount.message}</p>}
+                        {errors.newAmount && <p>{errors.newAmount.message}</p>}
                     </div>
 
                     <Button
