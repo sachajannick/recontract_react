@@ -10,7 +10,7 @@ function UpdateSearchFreelancerPage() {
             <GreetingHeader
                 headLine={"Let's update your search."}
                 secondLine={"Want to go back?"}
-                linkName={"welcome-freelancer"}
+                linkName={"logged-in-freelancer"}
             />
             <UpdateSearchFormFreelancer />
         </>

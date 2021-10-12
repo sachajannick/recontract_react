@@ -10,7 +10,7 @@ function NewSearchFreelancerPage() {
             <GreetingHeader
                 headLine={"Let's get the search started."}
                 secondLine={"Want to go back?"}
-                linkName={"welcome-freelancer"}
+                linkName={"logged-in-freelancer"}
             />
             <NewSearchFormFreelancer />
         </>

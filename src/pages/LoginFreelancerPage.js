@@ -10,7 +10,7 @@ function LoginFreelancerPage() {
             <GreetingHeader
                 headLine={"Welcome back!"}
                 secondLine={"Not registered yet?"}
-                linkName={"get-started"}
+                linkName={"get-started-freelancer"}
             />
             <LoginFormFreelancer />
         </>

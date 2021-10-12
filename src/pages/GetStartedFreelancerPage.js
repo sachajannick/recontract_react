@@ -10,7 +10,7 @@ function GetStartedFreelancerPage() {
             <GreetingHeader
                 headLine={"Let's get you started."}
                 secondLine={"Create your reContract. account. Already registered?"}
-                linkName={"login"}
+                linkName={"login-freelancer"}
             />
             <GetStartedFormFreelancer />
         </>

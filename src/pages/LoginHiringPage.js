@@ -10,7 +10,7 @@ function LoginHiringPage() {
             <GreetingHeader
                 headLine={"Welcome back!"}
                 secondLine={"Not registered yet?"}
-                linkName={"get-started"}
+                linkName={"get-started-hiring"}
             />
             <LoginFormHiring />
         </>

@@ -17,7 +17,7 @@ function UpdateSearchFormHiring() {
 
     async function fetchSearches() {
         try {
-            const searches = await axios.get(`http://localhost:8080/api/searches/id/all2/id/${userId}`, {
+            const searches = await axios.get(`http://localhost:8080/api/searches/long/id/${userId}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${jwtToken}`,

@@ -9,7 +9,7 @@ function NewSearchFreelancerSuccessPage() {
             <GreetingHeader
                 headLine={"You've created your new search!"}
                 secondLine={"Want to go back?"}
-                linkName={"swipe-panel-freelancer"}
+                linkName={"logged-in-freelancer"}
             />
         </>
     )
