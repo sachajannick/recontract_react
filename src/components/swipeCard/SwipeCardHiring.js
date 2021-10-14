@@ -1,108 +1,101 @@
-import React, {useMemo, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import styles from "./SwipeCard.module.scss"
-import demo1 from "../../../../recontract/src/assets/demo1.jpg"
-import demo2 from "../../../../recontract/src/assets/demo2.jpg"
-import TinderCard from "react-tinder-card";
-import dislike from "../../../../recontract/src/assets/dislike.png";
-import like from "../../../../recontract/src/assets/like.png";
+import axios from "axios";
+import {useForm} from "react-hook-form";
+import MyHelper from "../../helpers/MyHelper";
+import CountMyList from "../../helpers/CountMyList";
 
 function SwipeCardHiring() {
-    const [people, setPeople] = useState([
-        {
-            name: "Sam Kessels",
-            url: demo1,
-            amount: "€80",
-            location: "Amstelveen",
-            functionTitle: "Wanted: " + "Java Developer",
-            headline: '"At KPMG, we inspire confidence and empower change in all we do."'
-        },
-        {
-            name: "Sarah Fadim",
-            url: demo2,
-            amount: "€85",
-            location: "Amsterdam",
-            functionTitle: "Medior Java Developer",
-            headline: '"I am focussed on creating meaningful solutions through code."'
+    const jwtToken = localStorage.getItem('token');
+    const { handleSubmit } = useForm();
+    const [count, setCount] = useState(0);
+    const [length, setLength] = useState(null);
+    const [functionTitle, setFunctionTitle] = useState();
+    const [amount, setAmount] = useState();
+    const [location, setLocation] = useState();
+    const [headline, setHeadline] = useState();
+    const [email, setEmail] = useState();
+    const [fullName, setFullName] = useState();
+    const [profilePicture, setProfilePicture] = useState();
+
+    async function fetchProfilePicture(photo) {
+        try {
+            const result = await axios.get(`http://localhost:8080/api/searches/profile-picture/id/${photo}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${jwtToken}`,
+                }
+                , responseType: "blob",
+            });
+            console.log(result);
+            setProfilePicture(URL.createObjectURL(result.data));
+        } catch (e) {
+            console.error(e);
         }
-    ]);
-
-    const [lastDirection, setLastDirection] = useState();
-
-    const childRefs = useMemo(() => Array(people.length).fill(0).map(i => React.createRef()), []);
-
-    const alreadyRemoved = [];
-    let peopleState = people; // This fixes issues with updating characters state forcing it to use the current state and not the state that was active when the card was created.
-
-    const swiped = (direction, nameToDelete) => {
-        console.log('removing: ' + nameToDelete)
-        setLastDirection(direction)
-        alreadyRemoved.push(nameToDelete)
     }
 
-    const outOfFrame = (name) => {
-        console.log(name + " left the screen!");
-        peopleState = peopleState.filter(person => person.name !== name)
-        setPeople(peopleState)
+    async function fetchSearchData() {
+        const searchResult = await axios.get(`http://localhost:8080/api/searches/freelancer`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${jwtToken}`,
+            }},
+        )
+
+        const test = MyHelper(searchResult.data, count);
+        console.log(test);
+
+        setFunctionTitle(test.functionTitle);
+        setAmount(test.amount);
+        setLocation(test.location);
+        setHeadline(test.headline);
+        setEmail(test.email);
+        setFullName(test.fullName);
+
+        console.log(test.searchId);
+        const whatNums = test.searchId;
+        console.log(whatNums);
+
+        const howMany = CountMyList(searchResult.data);
+        setLength(howMany);
+
+        fetchProfilePicture(whatNums);
     }
 
-    const swipe = (dir) => {
-        const cardsLeft = people.filter(person => !alreadyRemoved.includes(person.name))
-        if (cardsLeft.length) {
-            const toBeRemoved = cardsLeft[cardsLeft.length - 1].name // Find the card object to be removed
-            const index = people.map(person => person.name).indexOf(toBeRemoved) // Find the index of which to make the reference to
-            alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
-            childRefs[index].current.swipe(dir) // Swipe the card!
-        }
+    function pushUser() {
+        setCount((count +1));
+        console.log(count);
+        fetchSearchData();
     }
 
     return (
         <div className={styles["swipe-card"]}>
-            <div className={styles["swipe-card__button-container"]}>
-                <img
-                    className={styles["swipe-card__dislike"]}
-                    src={dislike}
-                    alt="dislike"
-                    onClick={() => swipe('left')}
-                />
-            </div>
-            {people.map((person, index) => (
-                <TinderCard
-                    className={styles["swipe-card__container"]}
-                    ref={childRefs[index]}
-                    key={person.name}
-                    preventSwipe={["up", "down"]}
-                    onSwipe={(dir) => swiped(dir, person.name)}
-                    onCardLeftScreen={() => outOfFrame(person.name)}
-                >
-                    <div className={styles["swipe-card__left"]}>
-                        <div
-                            className={styles["swipe-card__img"]}
-                            style={{
-                                backgroundImage: `url(${person.url})`
-                            }}
-                        >
-                        </div>
-                        <div className={styles["swipe-card__info"]}>
-                            <h3>{person.name}</h3>
-                            <h4>{person.amount}</h4>
-                            <h5>{person.location}</h5>
-                        </div>
+            {length === null || count < length ?
+                <form onSubmit={handleSubmit(pushUser)}>
+                    <button
+                        className={styles["swipe-card__btn"]}
+                        type="submit"
+                        id='button'>
+                        GO
+                    </button>
+                </form> : <p>There are no more searches. Refresh to start again!</p>}
+            <div className={styles["swipe-card__container"]}>
+                <div className={styles["swipe-card__left"]}>
+                    <img
+                        className={styles["swipe-card__img"]}
+                        src={profilePicture}/>
+                    <div className={styles["swipe-card__info"]}>
+                        <h3>{fullName}</h3>
+                        <h4>€{amount}</h4>
+                        <h5>{location}</h5>
                     </div>
-                    <div className={styles["swipe-card__right"]}>
-                        <div className={styles["swipe-card__aside"]}>
-                            <h1>{person.functionTitle}</h1>
-                            <h2>{person.headline}</h2>
-                        </div>
+                </div>
+                <div className={styles["swipe-card__right"]}>
+                    <div className={styles["swipe-card__aside"]}>
+                        <h1>{functionTitle}</h1>}
+                        <h2>"{headline}"</h2>
                     </div>
-                </TinderCard>
-            ))}
-            <div className={styles["swipe-card__button-container"]}>
-                <img
-                    className={styles["swipe-card__like"]}
-                    src={like}
-                    alt="like"
-                    onClick={() => swipe('right')}
-                />
+                </div>
             </div>
         </div>
     )

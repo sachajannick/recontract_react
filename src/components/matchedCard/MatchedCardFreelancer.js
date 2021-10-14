@@ -1,36 +1,43 @@
-import React, {useState} from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./MatchedCard.module.scss";
-import demo1 from "../../../../recontract/src/assets/demo1.jpg";
-import TinderCard from "react-tinder-card";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
 
 function MatchedCardFreelancer() {
-    const [people, setPeople] = useState([
-        {
-            name: "Sam Kessels",
-            url: demo1,
-            email: "s.kessels@kpmg.nl"
+    const userId = localStorage.getItem('id');
+    const { user } = useContext(AuthContext);
+
+    useEffect(() => {
+        async function fetchUserData() {
+            const result = await axios.get(`http://localhost:8080/api/users/id/${userId}`);
+
         }
-    ]);
+        fetchUserData();
+    }, [])
+
+    useEffect(() => {
+        async function fetchSearchData() {
+            const searchResult = await axios.get(`http://localhost:8080/api/searches/id/${userId}`);
+        }
+        fetchSearchData();
+    }, [])
 
     return (
         <div className={styles["matched-card"]}>
-            {people.map((person) => (
-                <TinderCard
-                    className={"matched-card__tinder-card"}
-                    key={person.name}
-                    preventSwipe={["up", "down", "left", "right"]}>
+                <div
+                    className={"matched-card__tinder-card"}>
                     <div className={styles["matched-card__left"]}>
                         <div
                             className={styles["matched-card__img"]}
                             style={{
-                                backgroundImage: `url(${person.url})`
+                                backgroundImage: `url(${user.url})`
                             }}
                         >
                         </div>
                         <div className={styles["matched-card__info"]}>
-                            <h2>{person.name}</h2>
-                            <h3>{person.email}</h3>
+                            <h2>{user.name}</h2>
+                            <h3>{user.email}</h3>
                         </div>
                     </div>
 
@@ -45,7 +52,7 @@ function MatchedCardFreelancer() {
                             </Link></h4>
                         </div>
                     </div>
-                </TinderCard>
+                </div>
             ))}
         </div>
     )

@@ -95,49 +95,6 @@ function GetStartedFormHiring() {
 
                     <div>
                         <label
-                            htmlFor="location">
-                            Location
-                        </label>
-                        <input
-                            className={styles["get-started__input"]}
-                            type="text"
-                            {...register("location", {
-                                required: {
-                                    value: true,
-                                    message: "Please enter your location",
-                                },
-                            })}
-                        />
-                        {errors.location && <p>{errors.location.message}</p>}
-                    </div>
-
-                    <div>
-                        <label
-                            htmlFor="headline">
-                            Headline (min. 40 characters)
-                        </label>
-                        <textarea rows="1" cols="16"
-                                  className={styles["get-started__input"]}
-                                  {...register("headline", {
-                                      required: {
-                                          value: true,
-                                          message: "Please enter a headline",
-                                      },
-                                      minLength: {
-                                          value: 40,
-                                          message: "Headline must be at least 40 characters"
-                                      },
-                                      maxLength: {
-                                          value: 70,
-                                          message: "Headline can be max 70 characters"
-                                      }
-                                  })}
-                        />
-                        {errors.headline && <p>{errors.headline.message}</p>}
-                    </div>
-
-                    <div>
-                        <label
                             htmlFor="password">
                             Password (min. 8 characters)
                         </label>

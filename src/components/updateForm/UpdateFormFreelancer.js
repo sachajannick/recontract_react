@@ -22,8 +22,6 @@ function UpdateFormFreelancer() {
                 newPassword: data.newPassword,
                 newFullName: data.newFullName,
                 newEmail: data.newEmail,
-                newLocation: data.newLocation,
-                newHeadline: data.newHeadline,
             },{
                 headers: {
                     "Content-Type": "application/json",
@@ -96,41 +94,6 @@ function UpdateFormFreelancer() {
                             })}
                         />
                         {errors.newEmail && <p>{errors.newEmail.message}</p>}
-                    </div>
-
-                    <div>
-                        <label
-                            htmlFor="newLocation">
-                            Location
-                        </label>
-                        <input
-                            className={styles["update__input"]}
-                            type="text"
-                            {...register("newLocation", {
-                                required: {
-                                    value: true,
-                                    message: "Please enter your location",
-                                },
-                            })}
-                        />
-                        {errors.newLocation && <p>{errors.newLocation.message}</p>}
-                    </div>
-
-                    <div>
-                        <label
-                            htmlFor="newHeadline">
-                            Headline (min. 40 characters)
-                        </label>
-                        <textarea rows="1" cols="16"
-                                  className={styles["update__input"]}
-                                  {...register("newHeadline", {
-                                      required: {
-                                          value: true,
-                                          message: "Please enter a headline",
-                                      },
-                                  })}
-                        />
-                        {errors.newHeadline && <p>{errors.newHeadline.message}</p>}
                     </div>
 
                     <div>

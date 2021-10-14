@@ -38,6 +38,8 @@ function UpdateSearchFormFreelancer() {
             const result = await axios.patch(`http://localhost:8080/api/searches/id/${searchId}`, {
                 newFunctionTitle: data.newFunctionTitle,
                 newAmount: data.newAmount,
+                newLocation: data.newLocation,
+                newHeadline: data.newHeadline,
             }, {
                 headers: {
                     "Content-Type": "application/json",
@@ -91,6 +93,49 @@ function UpdateSearchFormFreelancer() {
                             })}
                         />
                         {errors.newAmount && <p>{errors.newAmount.message}</p>}
+                    </div>
+
+                    <div>
+                        <label
+                            htmlFor="newLocation">
+                            Location
+                        </label>
+                        <input
+                            className={styles["update-search__input"]}
+                            type="text"
+                            {...register("newLocation", {
+                                required: {
+                                    value: true,
+                                    message: "Please enter your location",
+                                },
+                            })}
+                        />
+                        {errors.newLocation && <p>{errors.newLocation.message}</p>}
+                    </div>
+
+                    <div>
+                        <label
+                            htmlFor="newHeadline">
+                            Headline (min. 40 characters)
+                        </label>
+                        <textarea rows="1" cols="16"
+                                  className={styles["update-search__input"]}
+                                  {...register("newHeadline", {
+                                      required: {
+                                          value: true,
+                                          message: "Please enter a headline",
+                                      },
+                                      minLength: {
+                                          value: 40,
+                                          message: "Headline must be at least 40 characters"
+                                      },
+                                      maxLength: {
+                                          value: 70,
+                                          message: "Headline can be max 70 characters"
+                                      }
+                                  })}
+                        />
+                        {errors.newHeadline && <p>{errors.newHeadline.message}</p>}
                     </div>
 
                     <Button
