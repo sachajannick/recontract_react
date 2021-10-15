@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./UpdateSearchForm.module.scss"
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -36,10 +36,11 @@ function UpdateSearchFormHiring() {
         console.log(data);
         try {
             const result = await axios.patch(`http://localhost:8080/api/searches/id/${searchId}`, {
-                newFunctionTitle: data.newFunctionTitle,
-                newAmount: data.newAmount,
-                newLocation: data.newLocation,
-                newHeadline: data.newHeadline,
+                functionTitle: data.functionTitle,
+                amount: data.amount,
+                location: data.location,
+                headline: data.headline,
+                email: data.email,
             }, {
                 headers: {
                     "Content-Type": "application/json",
@@ -61,66 +62,66 @@ function UpdateSearchFormHiring() {
 
                     <div>
                         <label
-                            htmlFor="newFunctionTitle">
+                            htmlFor="functionTitle">
                             I want to get hired as:
                         </label>
                         <input
                             className={styles["update-search__input"]}
                             type="text"
-                            {...register("newFunctionTitle", {
+                            {...register("functionTitle", {
                                 required: {
                                     value: true,
                                     message: "Please enter a function title",
                                 },
                             })}
                         />
-                        {errors.newFunctionTitle && <p>{errors.newFunctionTitle.message}</p>}
+                        {errors.functionTitle && <p>{errors.functionTitle.message}</p>}
                     </div>
 
                     <div>
                         <label
-                            htmlFor="newAmount">
+                            htmlFor="amount">
                             I want to earn around (in € per hour):
                         </label>
                         <input
                             className={styles["update-search__input"]}
                             type="number"
-                            {...register("newAmount", {
+                            {...register("amount", {
                                 required: {
                                     value: true,
                                     message: "Please enter an amount",
                                 },
                             })}
                         />
-                        {errors.newAmount && <p>{errors.newAmount.message}</p>}
+                        {errors.amount && <p>{errors.amount.message}</p>}
                     </div>
 
                     <div>
                         <label
-                            htmlFor="newLocation">
+                            htmlFor="location">
                             Location
                         </label>
                         <input
                             className={styles["update-search__input"]}
                             type="text"
-                            {...register("newLocation", {
+                            {...register("location", {
                                 required: {
                                     value: true,
                                     message: "Please enter your location",
                                 },
                             })}
                         />
-                        {errors.newLocation && <p>{errors.newLocation.message}</p>}
+                        {errors.location && <p>{errors.location.message}</p>}
                     </div>
 
                     <div>
                         <label
-                            htmlFor="newHeadline">
+                            htmlFor="headline">
                             Headline (min. 40 characters)
                         </label>
                         <textarea rows="1" cols="16"
                                   className={styles["update-search__input"]}
-                                  {...register("newHeadline", {
+                                  {...register("headline", {
                                       required: {
                                           value: true,
                                           message: "Please enter a headline",
@@ -135,7 +136,26 @@ function UpdateSearchFormHiring() {
                                       }
                                   })}
                         />
-                        {errors.newHeadline && <p>{errors.newHeadline.message}</p>}
+                        {errors.headline && <p>{errors.headline.message}</p>}
+                    </div>
+
+                    <div>
+                        <label
+                            htmlFor="email">
+                            Email
+                        </label>
+                        <input
+                            className={styles["new-search__input"]}
+                            type="email"
+                            {...register("email", {
+                                required: {
+                                    value: true,
+                                    pattern: !/\S+@\S+\.\S+/,
+                                    message: "Please enter your email",
+                                },
+                            })}
+                        />
+                        {errors.email && <p>{errors.email.message}</p>}
                     </div>
 
                     <Button

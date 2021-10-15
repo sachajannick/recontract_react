@@ -20,6 +20,7 @@ function NewSearchFormFreelancer() {
                 amount: data.amount,
                 location: data.location,
                 headline: data.headline,
+                email: data.email,
                 searchId: data.searchId,
             }, {
                 headers: {
@@ -117,6 +118,25 @@ function NewSearchFormFreelancer() {
                                   })}
                         />
                         {errors.headline && <p>{errors.headline.message}</p>}
+                    </div>
+
+                    <div>
+                        <label
+                            htmlFor="email">
+                            Email
+                        </label>
+                        <input
+                            className={styles["new-search__input"]}
+                            type="email"
+                            {...register("email", {
+                                required: {
+                                    value: true,
+                                    pattern: !/\S+@\S+\.\S+/,
+                                    message: "Please enter your email",
+                                },
+                            })}
+                        />
+                        {errors.email && <p>{errors.email.message}</p>}
                     </div>
 
                     <Button

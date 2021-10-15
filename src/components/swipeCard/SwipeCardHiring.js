@@ -1,7 +1,7 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useState } from "react";
 import styles from "./SwipeCard.module.scss"
 import axios from "axios";
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import MyHelper from "../../helpers/MyHelper";
 import CountMyList from "../../helpers/CountMyList";
 
@@ -43,24 +43,21 @@ function SwipeCardHiring() {
             }},
         )
 
-        const test = MyHelper(searchResult.data, count);
-        console.log(test);
+        const result = MyHelper(searchResult.data, count);
 
-        setFunctionTitle(test.functionTitle);
-        setAmount(test.amount);
-        setLocation(test.location);
-        setHeadline(test.headline);
-        setEmail(test.email);
-        setFullName(test.fullName);
+        setFunctionTitle(result.functionTitle);
+        setAmount(result.amount);
+        setLocation(result.location);
+        setHeadline(result.headline);
+        setEmail(result.email);
+        setFullName(result.fullName);
 
-        console.log(test.searchId);
-        const whatNums = test.searchId;
-        console.log(whatNums);
+        const whatId = result.searchId;
 
         const howMany = CountMyList(searchResult.data);
         setLength(howMany);
 
-        fetchProfilePicture(whatNums);
+        fetchProfilePicture(whatId);
     }
 
     function pushUser() {
@@ -99,8 +96,7 @@ function SwipeCardHiring() {
                         <h6>{email}</h6>
                     </div>
                 </div>
-            </div>) :null}
-
+            </div> ) : null}
         </div>
     )
 }

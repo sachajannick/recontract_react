@@ -18,10 +18,6 @@ function GetStartedFormFreelancer() {
             const result = await axios.post('http://localhost:8080/api/auth/signup', {
                 username: data.username,
                 password: data.password,
-                fullName: data.fullName,
-                email: data.email,
-                location: data.location,
-                headline: data.headline,
                 hiringOrFreelancer: "freelancer",
                 role: ["user"]
             })
@@ -40,24 +36,6 @@ function GetStartedFormFreelancer() {
 
                     <div>
                         <label
-                            htmlFor="fullName">
-                            Full name
-                        </label>
-                        <input
-                            className={styles["get-started__input"]}
-                            type="text"
-                            {...register("fullName", {
-                                required: {
-                                    value: true,
-                                    message: "Please enter your full name",
-                                },
-                            })}
-                        />
-                        {errors.fullName && <p>{errors.fullName.message}</p>}
-                    </div>
-
-                    <div>
-                        <label
                             htmlFor="username">
                             Username
                         </label>
@@ -72,25 +50,6 @@ function GetStartedFormFreelancer() {
                             })}
                         />
                         {errors.username && <p>{errors.username.message}</p>}
-                    </div>
-
-                    <div>
-                        <label
-                            htmlFor="email">
-                            Email
-                        </label>
-                        <input
-                            className={styles["get-started__input"]}
-                            type="email"
-                            {...register("email", {
-                                required: {
-                                    value: true,
-                                    pattern: !/\S+@\S+\.\S+/,
-                                    message: "Please enter your email",
-                                },
-                            })}
-                        />
-                        {errors.email && <p>{errors.email.message}</p>}
                     </div>
 
                     <div>
@@ -127,10 +86,6 @@ function GetStartedFormFreelancer() {
                                 required: {
                                     value: true,
                                     message: "Please re-enter your password",
-                                },
-                                minLength: {
-                                    value: 8,
-                                    message: "Password needs to be at least 8 characters"
                                 },
                                 validate: value => value === password.current || "Your entered passwords don't match"
                             })}

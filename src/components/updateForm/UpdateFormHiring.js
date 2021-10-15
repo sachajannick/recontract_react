@@ -8,7 +8,7 @@ import axios from "axios";
 function UpdateFormHiring() {
     const { handleSubmit, formState: { errors }, register, watch } = useForm();
     const password = useRef({});
-    password.current = watch("newPassword");
+    password.current = watch("password");
     const [ updateSuccess, toggleUpdateSuccess ] = useState(false);
     const history = useHistory();
     const userId = localStorage.getItem('id');
@@ -18,12 +18,8 @@ function UpdateFormHiring() {
         console.log(data);
         try {
             const result = await axios.patch(`http://localhost:8080/api/users/id/${userId}`, {
-                    newUsername: data.newUsername,
-                    newPassword: data.newPassword,
-                    newFullName: data.newFullName,
-                    newEmail: data.newEmail,
-                    newLocation: data.newLocation,
-                    newHeadline: data.newHeadline,
+                    username: data.username,
+                    password: data.password,
                 },{
                     headers: {
                         "Content-Type": "application/json",
@@ -45,68 +41,31 @@ function UpdateFormHiring() {
 
                     <div>
                         <label
-                            htmlFor="newFullName">
-                            Full name
-                        </label>
-                        <input
-                            className={styles["update__input"]}
-                            type="text"
-                            {...register("newFullName", {
-                                required: {
-                                    value: true,
-                                    message: "Please enter your full name",
-                                },
-                            })}
-                        />
-                        {errors.newFullName && <p>{errors.newFullName.message}</p>}
-                    </div>
-
-                    <div>
-                        <label
-                            htmlFor="newUsername">
+                            htmlFor="username">
                             Username
                         </label>
                         <input
                             className={styles["update__input"]}
                             type="text"
-                            {...register("newUsername", {
+                            {...register("username", {
                                 required: {
                                     value: true,
                                     message: "Please enter your username",
                                 },
                             })}
                         />
-                        {errors.newUsername && <p>{errors.newUsername.message}</p>}
+                        {errors.username && <p>{errors.username.message}</p>}
                     </div>
 
                     <div>
                         <label
-                            htmlFor="newEmail">
-                            Email
-                        </label>
-                        <input
-                            className={styles["update__input"]}
-                            type="email"
-                            {...register("newEmail", {
-                                required: {
-                                    value: true,
-                                    pattern: !/\S+@\S+\.\S+/,
-                                    message: "Please enter your email",
-                                },
-                            })}
-                        />
-                        {errors.newEmail && <p>{errors.newEmail.message}</p>}
-                    </div>
-
-                    <div>
-                        <label
-                            htmlFor="newPassword">
+                            htmlFor="password">
                             Password (min. 8 characters)
                         </label>
                         <input
                             className={styles["update__input"]}
                             type="password"
-                            {...register("newPassword", {
+                            {...register("password", {
                                 required: {
                                     value: true,
                                     message: "Please enter your password",
@@ -117,30 +76,26 @@ function UpdateFormHiring() {
                                 },
                             })}
                         />
-                        {errors.newPassword && <p>{errors.newPassword.message}</p>}
+                        {errors.password && <p>{errors.password.message}</p>}
                     </div>
 
                     <div>
                         <label
-                            htmlFor="newPassword2">
+                            htmlFor="password2">
                             Confirm password
                         </label>
                         <input
                             className={styles["update__input"]}
                             type="password"
-                            {...register("newPassword2", {
+                            {...register("password2", {
                                 required: {
                                     value: true,
                                     message: "Please re-enter your password",
                                 },
-                                minLength: {
-                                    value: 8,
-                                    message: "Password needs to be at least 8 characters"
-                                },
                                 validate: value => value === password.current || "Your entered passwords don't match"
                             })}
                         />
-                        {errors.newPassword2 && <p>{errors.newPassword2.message}</p>}
+                        {errors.password2 && <p>{errors.password2.message}</p>}
                     </div>
 
                     <Button

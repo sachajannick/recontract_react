@@ -1,7 +1,7 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import './App.css';
-import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
-import {AuthContext} from "./context/AuthContext";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import { AuthContext } from "./context/AuthContext";
 import HomePage from "./pages/HomePage";
 import GetStartedPage from "./pages/GetStartedPage";
 import GetStartedFreelancerPage from "./pages/GetStartedFreelancerPage";
@@ -19,8 +19,6 @@ import NewSearchFreelancerSuccessPage from "./pages/NewSearchFreelancerSuccessPa
 import NewSearchHiringSuccessPage from "./pages/NewSearchHiringSuccessPage";
 import SwipePanelFreelancerPage from "./pages/SwipePanelFreelancerPage";
 import SwipePanelHiringPage from "./pages/SwipePanelHiringPage";
-import MatchedFreelancerPage from "./pages/MatchedFreelancerPage";
-import MatchedHiringPage from "./pages/MatchedHiringPage";
 import UpdateFreelancerSuccessPage from "./pages/UpdateFreelancerSuccessPage";
 import UpdateHiringSuccessPage from "./pages/UpdateHiringSuccessPage";
 import UpdateSearchFreelancerPage from "./pages/UpdateSearchFreelancerPage";
@@ -118,12 +116,6 @@ function App() {
           </Route>
           <Route path="/swipe-panel-hiring">
             {user !== null ? <SwipePanelHiringPage /> : <Redirect to="/"/>}
-          </Route>
-          <Route path="/matched-freelancer">
-            {user !== null ? <MatchedFreelancerPage /> : <Redirect to="/"/>}
-          </Route>
-          <Route path="/matched-hiring">
-            {user !== null ? <MatchedHiringPage /> : <Redirect to="/"/>}
           </Route>
         </Switch>
       </Router>

@@ -17,14 +17,13 @@ function UploadProfilePictureFreelancer() {
             const formData = new FormData();
             formData.append('file', data.profilePicture[0]);
 
-            const result = await axios.patch(`http://localhost:8080/api/users/profile-picture/id/${userId}`,
+            const result = await axios.patch(`http://localhost:8080/api/searches/profile-picture/id/${userId}`,
                 formData
                 , {
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,
                     }},
             )
-            console.log(result);
             console.log(result);
             toggleUploadSuccess(true);
             history.push('/upload-picture-freelancer-success');
