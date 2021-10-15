@@ -1,33 +1,37 @@
 $white: #fff;
 $taupe: #dfac89;
 $blue: #5b618e;
-$shadow-grey: 0px 18px 53px rgba(255, 255, 255, 0.5);
+$shadow-grey: 0px 18px 53px rgba(255, 255, 255, 0.12);
+$darker-taupe: rgba(223, 172, 137, 0.88);
 
 .swipe-card {
   display: flex;
   justify-content: center;
-  margin-top: 10vh;
-  box-shadow: $shadow-grey;
+  margin-top: 5vh;
 
-  &__button-container:hover {
-    cursor: pointer;
+  &__btn {
+    width: 90px;
+    height: 25px;
+    border: none;
+    background: $taupe;
+    font-weight: bold;
+
+    &:hover {
+      background: $darker-taupe;
+      cursor: pointer;
+      transition: all 0.3s ease-out;
+    }
   }
 
-  &__dislike {
-    background: none;
-    position: absolute;
-    top: calc(230px + 5vw);
-    left: 60px;
-    width: 13vw;
-    height: 13vw;
-    z-index: -999;
+  p {
+    font-size: calc(7px + 1vw);
   }
 
   &__container {
     position: absolute;
     top: 170px;
     cursor: grab;
-    box-shadow: 0px 18px 53px rgba(42, 42, 42, 0.4);
+    box-shadow: $shadow-grey;
   }
 
   &__left {
@@ -35,6 +39,7 @@ $shadow-grey: 0px 18px 53px rgba(255, 255, 255, 0.5);
   }
 
   &__img {
+    display: block;
     position: relative;
     width: 27vw;
     height: 27vw;
@@ -88,38 +93,23 @@ $shadow-grey: 0px 18px 53px rgba(255, 255, 255, 0.5);
 
     h1 {
       background: none;
-      color: $taupe;
+      color: $blue;
       font-weight: bold;
       font-size: calc(7px + 1vw);
     }
 
     h2 {
       background: none;
-      color: $blue;
+      color: $taupe;
       font-size: calc(7px + 1vw);
       font-weight: normal;
     }
-  }
 
-  &__like {
-    background: none;
-    position: absolute;
-    top: calc(230px + 5vw);
-    right: 60px;
-    width: 13vw;
-    height: 13vw;
-    z-index: -999;
-  }
-}
-
-@media screen and (max-width: 950px) {
-  .swipe-card {
-    &__dislike {
-      top: calc(200px + 5vw);
-    }
-
-    &__like {
-      top: calc(200px + 5vw);
+    h6 {
+      background: none;
+      color: $blue;
+      font-weight: normal;
+      font-size: calc(6px + 1vw);
     }
   }
 }
@@ -138,16 +128,6 @@ $shadow-grey: 0px 18px 53px rgba(255, 255, 255, 0.5);
 
 @media screen and (max-width: 620px) {
   .swipe-card {
-    &__dislike {
-      top: calc(190px + 5vw);
-      left: 40px;
-    }
-
-    &__like {
-      top: calc(190px + 5vw);
-      right: 40px;
-    }
-
     &__aside {
       h1 {
         font-size: calc(6px + 1vw);
@@ -168,6 +148,7 @@ $shadow-grey: 0px 18px 53px rgba(255, 255, 255, 0.5);
 
     &__aside {
       height: 39vw;
+      width: 20vw;
 
       h1 {
         font-size: calc(5px + 1vw);
@@ -176,14 +157,6 @@ $shadow-grey: 0px 18px 53px rgba(255, 255, 255, 0.5);
       h2 {
         font-size: calc(5px + 1vw);
       }
-    }
-
-    &__dislike {
-      left: 30px;
-    }
-
-    &__like {
-      right: 30px;
     }
   }
 }

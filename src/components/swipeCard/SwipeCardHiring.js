@@ -10,6 +10,7 @@ function SwipeCardHiring() {
     const { handleSubmit } = useForm();
     const [count, setCount] = useState(0);
     const [length, setLength] = useState(null);
+    const [startMatch, setStartMatch] = useState(false);
     const [functionTitle, setFunctionTitle] = useState();
     const [amount, setAmount] = useState();
     const [location, setLocation] = useState();
@@ -75,11 +76,12 @@ function SwipeCardHiring() {
                     <button
                         className={styles["swipe-card__btn"]}
                         type="submit"
-                        id='button'>
+                        id='button'
+                        onClick={() => setStartMatch(true)}>
                         GO
                     </button>
-                </form> : <p>There are no more searches. Refresh to start again!</p>}
-            <div className={styles["swipe-card__container"]}>
+                </form> : <p>The end! Refresh this page to start again.</p>}
+            {startMatch ? (<div className={styles["swipe-card__container"]}>
                 <div className={styles["swipe-card__left"]}>
                     <img
                         className={styles["swipe-card__img"]}
@@ -94,9 +96,11 @@ function SwipeCardHiring() {
                     <div className={styles["swipe-card__aside"]}>
                         <h1>{functionTitle}</h1>}
                         <h2>"{headline}"</h2>
+                        <h6>{email}</h6>
                     </div>
                 </div>
-            </div>
+            </div>) :null}
+
         </div>
     )
 }
