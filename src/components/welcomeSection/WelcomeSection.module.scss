@@ -8,7 +8,7 @@ $taupe: #dfac89;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  padding: 20vw 10vw 0 10vw;
+  padding: 20vw 12vw 0 12vw;
   line-height: 0.90;
   text-align: center;
 
@@ -37,10 +37,10 @@ $taupe: #dfac89;
   }
 
   h4 {
-    padding: 0 7vw 0 7vw;
-    font-size: calc(11px + 1vw);
+    padding: 0 9vw 0 9vw;
+    font-size: calc(10px + 1vw);
     color: $light-grey;
-    font-weight: 500;
+    font-weight: normal;
   }
 }
 
@@ -53,9 +53,5 @@ $taupe: #dfac89;
 @media screen and (max-width: 480px) {
   .welcome-section {
     height: calc(350px + 6vw);
-
-    h4 {
-      padding: 0 5vw 0 5vw;
-    }
   }
 }

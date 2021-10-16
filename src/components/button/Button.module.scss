@@ -1,23 +1,49 @@
-$black: #000;
+$white: #fff;
 $taupe: #dfac89;
-$darker-taupe: rgba(223, 172, 137, 0.88);
 
 .btn {
-  width: 18vw;
-  height: 4vw;
+  width: 240px;
+  height: 50px;
   margin-top: 10px;
-  border: none;
-  border-radius: 2px;
+  border: 2px solid $taupe;
+  border-radius: 8px;
   font-size: calc(8px + 1vw);
-  font-weight: bold;
-  color: $black;
-  background: $taupe;
+  font-weight: normal;
+  color: $white;
   text-decoration: none;
   cursor: pointer;
 
   &:hover {
-    background: $darker-taupe;
+    background: $taupe;
     cursor: pointer;
     transition: all 0.3s ease-out;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .btn {
+    width: 200px;
+    height: 45px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .btn {
+    width: 150px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .btn {
+    width: 130px;
+    height: 35px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .btn {
+    width: 110px;
+    height: 30px;
   }
 }
