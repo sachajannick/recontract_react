@@ -2,7 +2,7 @@ $white: #fff;
 $taupe: #dfac89;
 $blue: #5b618e;
 $shadow-grey: 0px 18px 53px rgba(255, 255, 255, 0.12);
-$darker-taupe: rgba(223, 172, 137, 0.88);
+$darker-taupe: rgba(223, 172, 137, 0.78);
 
 .swipe-card {
   display: flex;
@@ -11,14 +11,13 @@ $darker-taupe: rgba(223, 172, 137, 0.88);
   margin-top: 5vh;
 
   &__btn {
-    width: 90px;
-    height: 25px;
-    border: none;
-    background: $taupe;
+    width: 100px;
+    height: 30px;
+    border: 2px solid $taupe;
     font-weight: bold;
 
     &:hover {
-      background: $darker-taupe;
+      background: $taupe;
       cursor: pointer;
       transition: all 0.3s ease-out;
     }
@@ -53,8 +52,8 @@ $darker-taupe: rgba(223, 172, 137, 0.88);
   &__img {
     display: block;
     position: relative;
-    width: 27vw;
-    height: 27vw;
+    width: 29vw;
+    height: 29vw;
     background-size: cover;
     background-position: center;
   }
@@ -64,19 +63,19 @@ $darker-taupe: rgba(223, 172, 137, 0.88);
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 27vw;
-    height: 8vw;
+    width: 29vw;
+    height: 10vw;
     background-color: $taupe;
 
     h3 {
       background: none;
-      font-size: calc(7px + 1vw);
+      font-size: calc(6px + 1vw);
       font-weight: bold;
     }
 
     h4 {
       background: none;
-      font-size: calc(7px + 1vw);
+      font-size: calc(6px + 1vw);
       font-weight: normal;
       color: $blue;
     }
@@ -98,8 +97,8 @@ $darker-taupe: rgba(223, 172, 137, 0.88);
     align-items: center;
     justify-content: space-evenly;
     text-align: center;
-    width: 18vw;
-    height: 35vw;
+    width: 20vw;
+    height: 39vw;
     background-color: $white;
     padding: 10px 20px 10px 20px;
 
@@ -126,18 +125,6 @@ $darker-taupe: rgba(223, 172, 137, 0.88);
   }
 }
 
-@media screen and (max-width: 700px) {
-  .swipe-card {
-    &__info {
-      height: 10vw;
-    }
-
-    &__aside {
-      height: 37vw;
-    }
-  }
-}
-
 @media screen and (max-width: 620px) {
   .swipe-card {
     &__aside {
@@ -154,20 +141,36 @@ $darker-taupe: rgba(223, 172, 137, 0.88);
 
 @media screen and (max-width: 500px) {
   .swipe-card {
-    &__info {
-      height: 12vw;
-    }
-
     &__aside {
-      height: 39vw;
-      width: 20vw;
-
       h1 {
         font-size: calc(5px + 1vw);
       }
 
       h2 {
         font-size: calc(5px + 1vw);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .swipe-card {
+    &__btn {
+      width: 80px;
+      height: 27px;
+    }
+
+    &__aside {
+      h1 {
+        font-size: calc(3.5px + 1vw);
+      }
+
+      h2 {
+        font-size: calc(3.5px + 1vw);
+      }
+
+      h6 {
+        font-size: calc(2.5px + 1vw);
       }
     }
   }
