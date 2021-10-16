@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styles from "./SwipeCard.module.scss"
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import MyHelper from "../../helpers/MyHelper";
-import CountMyList from "../../helpers/CountMyList";
+import IterateThroughList from "../../helpers/IterateThroughList";
+import CountLengthOfList from "../../helpers/CountLengthOfList";
 import {Link} from "react-router-dom";
 
 function SwipeCardHiring() {
@@ -44,7 +44,7 @@ function SwipeCardHiring() {
             }},
         )
 
-        const test = MyHelper(searchResult.data, count);
+        const test = IterateThroughList(searchResult.data, count);
 
         setFunctionTitle(test.functionTitle);
         setAmount(test.amount);
@@ -55,7 +55,7 @@ function SwipeCardHiring() {
 
         const whatNums = test.searchId;
 
-        const howMany = CountMyList(searchResult.data);
+        const howMany = CountLengthOfList(searchResult.data);
         setLength(howMany);
 
         fetchProfilePicture(whatNums);
