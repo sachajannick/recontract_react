@@ -15,7 +15,6 @@ function UpdateFormFreelancer() {
     const jwtToken = localStorage.getItem('token');
 
     async function onSubmit(data) {
-        console.log(data);
         try {
             const result = await axios.patch(`http://localhost:8080/api/users/id/${userId}`, {
                 username: data.username,
@@ -26,7 +25,6 @@ function UpdateFormFreelancer() {
                     Authorization: `Bearer ${jwtToken}`,
                 }},
             )
-            console.log(result);
             toggleUpdateSuccess(true);
             history.push('/update-freelancer-success');
         } catch (e) {
@@ -102,6 +100,7 @@ function UpdateFormFreelancer() {
                         type="submit"
                         btnText={"Continue"}
                     />
+
                     {updateSuccess && <p>Registration successful!</p>}
                 </form>
             </div>

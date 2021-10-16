@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./LoggedInChoose.module.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -25,7 +25,6 @@ function LoggedInChooseHiring() {
 
     fetchSearchIsPresent()
 
-
     return (
         <div className={styles["logged-in-choose"]}>
 
@@ -36,9 +35,9 @@ function LoggedInChooseHiring() {
                         I want to update my profile.
                     </Link>
                     <Link
-                        to={"/swipe-panel-hiring"}
+                        to={"/match-panel-hiring"}
                         className={styles["logged-in-choose__search-present__link"]}>
-                        I want to go to my swipe panel.
+                        I want to find a new match.
                     </Link>
                     <Link
                         to={"/update-search-hiring"}
@@ -62,11 +61,6 @@ function LoggedInChooseHiring() {
                         to={"/new-search-hiring"}
                         className={styles["logged-in-choose__search-not-present__link"]}>
                         I want to create a new search.
-                    </Link>
-                    <Link
-                        to={"/upload-picture-hiring"}
-                        className={styles["logged-in-choose__search-not-present__link"]}>
-                        Do this first! I want to upload my profile picture.
                     </Link>
                 </div>
             )}

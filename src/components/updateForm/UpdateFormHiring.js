@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
 import styles from "./UpdateForm.module.scss";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -15,7 +15,6 @@ function UpdateFormHiring() {
     const jwtToken = localStorage.getItem('token');
 
     async function onSubmit(data) {
-        console.log(data);
         try {
             const result = await axios.patch(`http://localhost:8080/api/users/id/${userId}`, {
                     username: data.username,
@@ -26,7 +25,6 @@ function UpdateFormHiring() {
                         Authorization: `Bearer ${jwtToken}`,
                     }},
             )
-            console.log(result);
             toggleUpdateSuccess(true);
             history.push('/update-hiring-success');
         } catch (e) {
@@ -102,6 +100,7 @@ function UpdateFormHiring() {
                         type="submit"
                         btnText={"Continue"}
                     />
+
                     {updateSuccess && <p>Registration successful!</p>}
                 </form>
             </div>

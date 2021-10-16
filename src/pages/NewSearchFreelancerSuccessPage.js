@@ -8,8 +8,8 @@ function NewSearchFreelancerSuccessPage() {
             <LogoBar />
             <GreetingHeader
                 headLine={"You've created your new search!"}
-                secondLine={"Want to go back?"}
-                linkName={"logged-in-freelancer"}
+                secondLine={"Now let's upload a profile picture!"}
+                linkName={"upload-picture-freelancer"}
             />
         </>
     )

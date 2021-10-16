@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import styles from "./SwipeCard.module.scss"
+import styles from "./MatchCard.module.scss"
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import IterateThroughList from "../../helpers/IterateThroughList";
 import CountLengthOfList from "../../helpers/CountLengthOfList";
-import {Link} from "react-router-dom";
 
-function SwipeCardFreelancer() {
+function MatchCardFreelancer() {
     const jwtToken = localStorage.getItem('token');
     const { handleSubmit } = useForm();
     const [count, setCount] = useState(0);
@@ -29,7 +29,6 @@ function SwipeCardFreelancer() {
                 }
                 , responseType: "blob",
             });
-            console.log(result);
             setProfilePicture(URL.createObjectURL(result.data));
         } catch (e) {
             console.error(e);
@@ -44,18 +43,16 @@ function SwipeCardFreelancer() {
             }},
         )
 
-        const test = IterateThroughList(searchResult.data, count);
-        console.log(test);
+        const result = IterateThroughList(searchResult.data, count);
 
-        setFunctionTitle(test.functionTitle);
-        setAmount(test.amount);
-        setLocation(test.location);
-        setHeadline(test.headline);
-        setEmail(test.email);
-        setFullName(test.fullName);
+        setFunctionTitle(result.functionTitle);
+        setAmount(result.amount);
+        setLocation(result.location);
+        setHeadline(result.headline);
+        setEmail(result.email);
+        setFullName(result.fullName);
 
-        console.log(test.searchId);
-        const whatNums = test.searchId;
+        const whatNums = result.searchId;
         console.log(whatNums);
 
         const howMany = CountLengthOfList(searchResult.data);
@@ -66,12 +63,12 @@ function SwipeCardFreelancer() {
 
     function pushUser() {
         setCount((count + 1));
-        console.log(count);
         fetchSearchData();
     }
 
     return (
         <div className={styles["swipe-card"]}>
+
             {length === null || count < length ?
                 <form onSubmit={handleSubmit(pushUser)}>
                     <button
@@ -83,8 +80,9 @@ function SwipeCardFreelancer() {
                     </button>
                 </form> : <p>The end! Refresh this page to start again or
                     <Link
-                        to={"/logged-in-hiring"}
+                        to={"/logged-in-freelancer"}
                         className={styles["swipe-card__link"]}> click here </Link>to go back.</p>}
+
             {startMatch ? ( <div className={styles["swipe-card__container"]}>
                 <div className={styles["swipe-card__left"]}>
                     <img
@@ -96,6 +94,7 @@ function SwipeCardFreelancer() {
                         <h5>{location}</h5>
                     </div>
                 </div>
+
                 <div className={styles["swipe-card__right"]}>
                     <div className={styles["swipe-card__aside"]}>
                         <h1>Wanted:<br/>{functionTitle}</h1>}
@@ -104,9 +103,9 @@ function SwipeCardFreelancer() {
                     </div>
                 </div>
             </div> ) : null}
+
         </div>
     )
 }
 
-export default SwipeCardFreelancer;
-
+export default MatchCardFreelancer;

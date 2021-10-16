@@ -12,23 +12,23 @@ import LoginHiringPage from "./pages/LoginHiringPage";
 import LoggedInFreelancerPage from "./pages/LoggedInFreelancerPage";
 import LoggedInHiringPage from "./pages/LoggedInHiringPage";
 import UpdateFreelancerPage from "./pages/UpdateFreelancerPage";
-import UpdateHiringPage from "./pages/UpdateHiringPage";
-import NewSearchFreelancerPage from "./pages/NewSearchFreelancerPage";
-import NewSearchHiringPage from "./pages/NewSearchHiringPage";
-import NewSearchFreelancerSuccessPage from "./pages/NewSearchFreelancerSuccessPage";
-import NewSearchHiringSuccessPage from "./pages/NewSearchHiringSuccessPage";
-import SwipePanelFreelancerPage from "./pages/SwipePanelFreelancerPage";
-import SwipePanelHiringPage from "./pages/SwipePanelHiringPage";
 import UpdateFreelancerSuccessPage from "./pages/UpdateFreelancerSuccessPage";
+import UpdateHiringPage from "./pages/UpdateHiringPage";
 import UpdateHiringSuccessPage from "./pages/UpdateHiringSuccessPage";
+import NewSearchFreelancerPage from "./pages/NewSearchFreelancerPage";
+import NewSearchFreelancerSuccessPage from "./pages/NewSearchFreelancerSuccessPage";
+import NewSearchHiringPage from "./pages/NewSearchHiringPage";
+import NewSearchHiringSuccessPage from "./pages/NewSearchHiringSuccessPage";
 import UpdateSearchFreelancerPage from "./pages/UpdateSearchFreelancerPage";
-import UpdateSearchHiringPage from "./pages/UpdateSearchHiringPage";
 import UpdateSearchFreelancerSuccessPage from "./pages/UpdateSearchFreelancerSuccessPage";
+import UpdateSearchHiringPage from "./pages/UpdateSearchHiringPage";
 import UpdateSearchHiringSuccessPage from "./pages/UpdateSearchHiringSuccessPage";
 import UploadProfilePictureFreelancerPage from "./pages/UploadProfilePictureFreelancerPage";
-import UploadProfilePictureHiringPage from "./pages/UploadProfilePictureHiringPage";
 import UploadProfilePictureFreelancerSuccessPage from "./pages/UploadProfilePictureFreelancerSuccessPage";
+import UploadProfilePictureHiringPage from "./pages/UploadProfilePictureHiringPage";
 import UploadProfilePictureHiringSuccessPage from "./pages/UploadProfilePictureHiringSuccessPage";
+import MatchPanelFreelancerPage from "./pages/MatchPanelFreelancerPage";
+import MatchPanelHiringPage from "./pages/MatchPanelHiringPage";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -111,11 +111,11 @@ function App() {
           <Route path="/upload-picture-hiring-success">
             {user !== null ? <UploadProfilePictureHiringSuccessPage /> : <Redirect to="/"/>}
           </Route>
-          <Route path="/swipe-panel-freelancer">
-            {user !== null ? <SwipePanelFreelancerPage /> : <Redirect to="/"/>}
+          <Route path="/match-panel-freelancer">
+            {user !== null ? <MatchPanelFreelancerPage /> : <Redirect to="/"/>}
           </Route>
-          <Route path="/swipe-panel-hiring">
-            {user !== null ? <SwipePanelHiringPage /> : <Redirect to="/"/>}
+          <Route path="/match-panel-hiring">
+            {user !== null ? <MatchPanelHiringPage /> : <Redirect to="/"/>}
           </Route>
         </Switch>
       </Router>

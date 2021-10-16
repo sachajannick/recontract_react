@@ -6,9 +6,7 @@ import { Button } from "../button/Button";
 import axios from "axios";
 
 function UpdateSearchFormHiring() {
-
     const [searchId, setSearchId] = useState();
-
     const { handleSubmit, formState: { errors }, register } = useForm();
     const [updateSearchSuccess, toggleUpdateSearchSuccess] = useState();
     const history = useHistory();
@@ -23,7 +21,6 @@ function UpdateSearchFormHiring() {
                     Authorization: `Bearer ${jwtToken}`,
                 }
             })
-            console.log(searches.data);
             setSearchId(searches.data);
         } catch (e) {
             console.error(e);
@@ -33,7 +30,6 @@ function UpdateSearchFormHiring() {
     fetchSearches()
 
     async function onSubmit(data) {
-        console.log(data);
         try {
             const result = await axios.patch(`http://localhost:8080/api/searches/id/${searchId}`, {
                 functionTitle: data.functionTitle,
@@ -48,9 +44,8 @@ function UpdateSearchFormHiring() {
                     Authorization: `Bearer ${jwtToken}`,
                 }
             })
-            console.log(result);
             toggleUpdateSearchSuccess(true);
-            history.push("/update-search-freelancer-success");
+            history.push("/update-search-hiring-success");
         } catch (e) {
             console.error(e);
         }
@@ -78,11 +73,10 @@ function UpdateSearchFormHiring() {
                         />
                         {errors.functionTitle && <p>{errors.functionTitle.message}</p>}
                     </div>
-
                     <div>
                         <label
                             htmlFor="amount">
-                            I want to earn around (in € per hour):
+                            I want to earn around (€ p/h):
                         </label>
                         <input
                             className={styles["update-search__input"]}
@@ -96,7 +90,6 @@ function UpdateSearchFormHiring() {
                         />
                         {errors.amount && <p>{errors.amount.message}</p>}
                     </div>
-
                     <div>
                         <label
                             htmlFor="fullName">
@@ -114,7 +107,6 @@ function UpdateSearchFormHiring() {
                         />
                         {errors.fullName && <p>{errors.fullName.message}</p>}
                     </div>
-
                     <div>
                         <label
                             htmlFor="location">

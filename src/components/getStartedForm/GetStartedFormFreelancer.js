@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
 import styles from "./GetStartedForm.module.scss";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -21,7 +21,6 @@ function GetStartedFormFreelancer() {
                 hiringOrFreelancer: "freelancer",
                 role: ["user"]
             })
-            console.log(result);
             toggleRegisterSuccess(true);
             history.push('/login-freelancer');
         } catch (e) {
@@ -67,7 +66,7 @@ function GetStartedFormFreelancer() {
                                 },
                                 minLength: {
                                     value: 8,
-                                    message: "Password needs to be at least 8 characters"
+                                    message: "Password must be at least 8 characters"
                                 },
                             })}
                         />
@@ -97,6 +96,7 @@ function GetStartedFormFreelancer() {
                         type="submit"
                         btnText={"Continue"}
                     />
+
                     {registerSuccess && <p>Registration successful!</p>}
                 </form>
             </div>

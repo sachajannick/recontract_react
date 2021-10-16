@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./NewSearchForm.module.scss"
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -13,7 +13,6 @@ function NewSearchFormHiring() {
     const userId = localStorage.getItem('id');
 
     async function onSubmit(data) {
-        console.log(data);
         try {
             const result = await axios.post(`http://localhost:8080/api/searches/id/${userId}`, {
                 functionTitle: data.functionTitle,
@@ -29,9 +28,8 @@ function NewSearchFormHiring() {
                     Authorization: `Bearer ${jwtToken}`,
                 }
             })
-            console.log(result);
             toggleNewSearchSuccess(true);
-            history.push("/new-search-freelancer-success");
+            history.push("/new-search-hiring-success");
         } catch (e) {
             console.error(e)
         }
@@ -161,6 +159,7 @@ function NewSearchFormHiring() {
                     <Button
                         btnText={"Continue"}
                     />
+
                     {newSearchSuccess && <p>Search is created!</p>}
                 </form>
             </div>

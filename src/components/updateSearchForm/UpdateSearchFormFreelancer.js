@@ -21,7 +21,6 @@ function UpdateSearchFormFreelancer() {
                     Authorization: `Bearer ${jwtToken}`,
                 }
             })
-            console.log(searches.data);
             setSearchId(searches.data);
         } catch (e) {
             console.error(e);
@@ -31,7 +30,6 @@ function UpdateSearchFormFreelancer() {
     fetchSearches()
 
     async function onSubmit(data) {
-        console.log(data);
         try {
             const result = await axios.patch(`http://localhost:8080/api/searches/id/${searchId}`, {
                 functionTitle: data.functionTitle,
@@ -46,7 +44,6 @@ function UpdateSearchFormFreelancer() {
                     Authorization: `Bearer ${jwtToken}`,
                 }
             })
-            console.log(result);
             toggleUpdateSearchSuccess(true);
             history.push("/update-search-freelancer-success");
         } catch (e) {
@@ -80,7 +77,7 @@ function UpdateSearchFormFreelancer() {
                     <div>
                         <label
                             htmlFor="amount">
-                            I want to earn around (in € per hour):
+                            I want to earn around (€ p/h):
                         </label>
                         <input
                             className={styles["update-search__input"]}
@@ -162,7 +159,7 @@ function UpdateSearchFormFreelancer() {
                             Email
                         </label>
                         <input
-                            className={styles["new-search__input"]}
+                            className={styles["update-search__input"]}
                             type="email"
                             {...register("email", {
                                 required: {

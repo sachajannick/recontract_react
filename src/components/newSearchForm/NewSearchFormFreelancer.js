@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./NewSearchForm.module.scss"
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -13,7 +13,6 @@ function NewSearchFormFreelancer() {
     const userId = localStorage.getItem('id');
 
     async function onSubmit(data) {
-        console.log(data);
         try {
             const result = await axios.post(`http://localhost:8080/api/searches/id/${userId}`, {
                 functionTitle: data.functionTitle,
@@ -29,7 +28,6 @@ function NewSearchFormFreelancer() {
                     Authorization: `Bearer ${jwtToken}`,
                 }
             })
-            console.log(result);
             toggleNewSearchSuccess(true);
             history.push("/new-search-freelancer-success");
         } catch (e) {
@@ -63,7 +61,7 @@ function NewSearchFormFreelancer() {
                     <div>
                         <label
                             htmlFor="amount">
-                            I want to earn around (in € per hour):
+                            I want to earn around (€ p/h):
                         </label>
                         <input
                             className={styles["new-search__input"]}

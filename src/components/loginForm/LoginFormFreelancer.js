@@ -1,10 +1,10 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import styles from "./LoginForm.module.scss";
 import { useForm } from "react-hook-form";
 import { Button } from "../button/Button";
+import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
-import {useHistory} from "react-router-dom";
 
 function LoginFormFreelancer() {
     const { handleSubmit, formState: { errors }, register } = useForm();
@@ -19,7 +19,6 @@ function LoginFormFreelancer() {
                 username: data.username,
                 password: data.password,
             })
-            console.log(result.data);
             localStorage.setItem('token', result.data.accessToken);
             localStorage.setItem('id', result.data.id);
             login(result.data);
@@ -76,6 +75,7 @@ function LoginFormFreelancer() {
                         type="submit"
                         btnText={"Continue"}
                     />
+
                 </form>
             </div>
         </div>

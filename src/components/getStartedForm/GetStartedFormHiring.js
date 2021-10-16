@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
 import styles from "./GetStartedForm.module.scss";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -21,7 +21,6 @@ function GetStartedFormHiring() {
                 hiringOrFreelancer: "hiring",
                 role: ["user"]
             })
-            console.log(result);
             toggleRegisterSuccess(true);
             history.push('/login-hiring');
         } catch (e) {
@@ -97,6 +96,7 @@ function GetStartedFormHiring() {
                         type="submit"
                         btnText={"Continue"}
                     />
+
                     {registerSuccess && <p>Registration successful!</p>}
                 </form>
             </div>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./UploadProfilePicture.module.scss"
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -24,7 +24,6 @@ function UploadProfilePictureFreelancer() {
                         Authorization: `Bearer ${jwtToken}`,
                     }},
             )
-            console.log(result);
             toggleUploadSuccess(true);
             history.push('/upload-picture-freelancer-success');
         } catch (e) {
@@ -34,8 +33,8 @@ function UploadProfilePictureFreelancer() {
 
     return (
         <div className={styles["upload-profile-picture"]}>
-            <form
-                onSubmit={handleSubmit(onSubmit)}
+
+            <form onSubmit={handleSubmit(onSubmit)}
                 className={styles["upload-profile-picture__form"]}>
                 <input
                     ref={register}
@@ -56,8 +55,10 @@ function UploadProfilePictureFreelancer() {
                     type="submit"
                     btnText={"Continue"}
                 />
+
                 {uploadSuccess && <p>Upload successful!</p>}
             </form>
+
         </div>
     )
 }
