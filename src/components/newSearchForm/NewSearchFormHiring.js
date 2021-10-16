@@ -18,6 +18,7 @@ function NewSearchFormHiring() {
             const result = await axios.post(`http://localhost:8080/api/searches/id/${userId}`, {
                 functionTitle: data.functionTitle,
                 amount: data.amount,
+                fullName: data.fullName,
                 location: data.location,
                 headline: data.headline,
                 email: data.email,
@@ -75,6 +76,24 @@ function NewSearchFormHiring() {
                             })}
                         />
                         {errors.amount && <p>{errors.amount.message}</p>}
+                    </div>
+
+                    <div>
+                        <label
+                            htmlFor="fullName">
+                            Full name
+                        </label>
+                        <input
+                            className={styles["new-search__input"]}
+                            type="text"
+                            {...register("fullName", {
+                                required: {
+                                    value: true,
+                                    message: "Please enter your full name",
+                                },
+                            })}
+                        />
+                        {errors.fullName && <p>{errors.fullName.message}</p>}
                     </div>
 
                     <div>

@@ -38,6 +38,7 @@ function UpdateSearchFormHiring() {
             const result = await axios.patch(`http://localhost:8080/api/searches/id/${searchId}`, {
                 functionTitle: data.functionTitle,
                 amount: data.amount,
+                fullName: data.fullName,
                 location: data.location,
                 headline: data.headline,
                 email: data.email,
@@ -98,6 +99,24 @@ function UpdateSearchFormHiring() {
 
                     <div>
                         <label
+                            htmlFor="fullName">
+                            Full name
+                        </label>
+                        <input
+                            className={styles["update-search__input"]}
+                            type="text"
+                            {...register("fullName", {
+                                required: {
+                                    value: true,
+                                    message: "Please enter your full name",
+                                },
+                            })}
+                        />
+                        {errors.fullName && <p>{errors.fullName.message}</p>}
+                    </div>
+
+                    <div>
+                        <label
                             htmlFor="location">
                             Location
                         </label>
@@ -145,7 +164,7 @@ function UpdateSearchFormHiring() {
                             Email
                         </label>
                         <input
-                            className={styles["new-search__input"]}
+                            className={styles["update-search__input"]}
                             type="email"
                             {...register("email", {
                                 required: {

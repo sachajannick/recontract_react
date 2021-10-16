@@ -38,6 +38,7 @@ function UpdateSearchFormFreelancer() {
             const result = await axios.patch(`http://localhost:8080/api/searches/id/${searchId}`, {
                 functionTitle: data.functionTitle,
                 amount: data.amount,
+                fullName: data.fullName,
                 location: data.location,
                 headline: data.headline,
                 email: data.email,
@@ -94,6 +95,24 @@ function UpdateSearchFormFreelancer() {
                             })}
                         />
                         {errors.amount && <p>{errors.amount.message}</p>}
+                    </div>
+
+                    <div>
+                        <label
+                            htmlFor="fullName">
+                            Full name
+                        </label>
+                        <input
+                            className={styles["update-search__input"]}
+                            type="text"
+                            {...register("fullName", {
+                                required: {
+                                    value: true,
+                                    message: "Please enter your full name",
+                                },
+                            })}
+                        />
+                        {errors.fullName && <p>{errors.fullName.message}</p>}
                     </div>
 
                     <div>
