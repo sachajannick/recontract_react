@@ -6,14 +6,13 @@ $taupe: #dfac89;
   padding: 5vw 0 0 10vw;
 
   &__container {
-    width: 20%;
+    width: 22vw;
   }
 
   &__form {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-rows: auto;
     grid-gap: 30px;
-    grid-column-gap: 70px;
 
     label {
       font-size: calc(5px + 1vw);
@@ -23,44 +22,13 @@ $taupe: #dfac89;
       color: $taupe;
       font-size: calc(5px + 1vw);
     }
-
-    textarea {
-      resize: none;
-      font-family: inherit;
-    }
   }
 
   &__input {
-    width: 27vw;
-    padding: 6px;
+    width: 22vw;
+    padding: 1.5vw;
     border: none;
     border-bottom: 1px solid $taupe;
     font-size: calc(5px + 1vw);
-  }
-}
-
-@media screen and (max-width: 610px) {
-  .get-started__input {
-    width: 32vw;
-  }
-}
-
-@media screen and (max-width: 455px) {
-  .get-started__form {
-    grid-column-gap: 35px;
-  }
-
-  .get-started__input {
-    width: 34vw;
-  }
-}
-
-@media screen and (max-width: 412px) {
-  .get-started__form {
-    grid-column-gap: 28px;
-  }
-
-  .get-started__input {
-    width: 37vw;
   }
 }

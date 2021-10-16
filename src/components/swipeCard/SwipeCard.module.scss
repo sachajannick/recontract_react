@@ -7,6 +7,7 @@ $darker-taupe: rgba(223, 172, 137, 0.88);
 .swipe-card {
   display: flex;
   justify-content: center;
+  flex-direction: row;
   margin-top: 5vh;
 
   &__btn {
@@ -24,7 +25,18 @@ $darker-taupe: rgba(223, 172, 137, 0.88);
   }
 
   p {
-    font-size: calc(7px + 1vw);
+    font-size: calc(6px + 1vw);
+  }
+
+  &__link {
+    color: $taupe;
+    text-decoration: none;
+
+    &:hover {
+      color: $darker-taupe;
+      cursor: pointer;
+      transition: all 0.3s ease-out;
+    }
   }
 
   &__container {
@@ -89,7 +101,7 @@ $darker-taupe: rgba(223, 172, 137, 0.88);
     width: 18vw;
     height: 35vw;
     background-color: $white;
-    padding: 0 20px 0 20px;
+    padding: 10px 20px 10px 20px;
 
     h1 {
       background: none;

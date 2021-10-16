@@ -4,6 +4,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import MyHelper from "../../helpers/MyHelper";
 import CountMyList from "../../helpers/CountMyList";
+import {Link} from "react-router-dom";
 
 function SwipeCardHiring() {
     const jwtToken = localStorage.getItem('token');
@@ -43,26 +44,25 @@ function SwipeCardHiring() {
             }},
         )
 
-        const result = MyHelper(searchResult.data, count);
+        const test = MyHelper(searchResult.data, count);
 
-        setFunctionTitle(result.functionTitle);
-        setAmount(result.amount);
-        setLocation(result.location);
-        setHeadline(result.headline);
-        setEmail(result.email);
-        setFullName(result.fullName);
+        setFunctionTitle(test.functionTitle);
+        setAmount(test.amount);
+        setLocation(test.location);
+        setHeadline(test.headline);
+        setEmail(test.email);
+        setFullName(test.fullName);
 
-        const whatId = result.searchId;
+        const whatNums = test.searchId;
 
         const howMany = CountMyList(searchResult.data);
         setLength(howMany);
 
-        fetchProfilePicture(whatId);
+        fetchProfilePicture(whatNums);
     }
 
     function pushUser() {
-        setCount((count +1));
-        console.log(count);
+        setCount((count + 1));
         fetchSearchData();
     }
 
@@ -77,8 +77,11 @@ function SwipeCardHiring() {
                         onClick={() => setStartMatch(true)}>
                         GO
                     </button>
-                </form> : <p>The end! Refresh this page to start again.</p>}
-            {startMatch ? (<div className={styles["swipe-card__container"]}>
+                </form> : <p>The end! Refresh this page to start again or
+                    <Link
+                        to={"/logged-in-hiring"}
+                        className={styles["swipe-card__link"]}> click here </Link>to go back.</p>}
+            {startMatch ? ( <div className={styles["swipe-card__container"]}>
                 <div className={styles["swipe-card__left"]}>
                     <img
                         className={styles["swipe-card__img"]}
@@ -91,7 +94,7 @@ function SwipeCardHiring() {
                 </div>
                 <div className={styles["swipe-card__right"]}>
                     <div className={styles["swipe-card__aside"]}>
-                        <h1>{functionTitle}</h1>}
+                        <h1>Profession:<br/>{functionTitle}</h1>}
                         <h2>"{headline}"</h2>
                         <h6>{email}</h6>
                     </div>

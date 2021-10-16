@@ -6,13 +6,14 @@ $taupe: #dfac89;
   padding: 5vw 0 0 10vw;
 
   &__container {
-    width: 29vw;
+    width: 20%;
   }
 
   &__form {
     display: grid;
-    grid-template-rows: auto;
-    grid-gap: 3.5vw;
+    grid-template-columns: auto auto;
+    grid-gap: 30px;
+    grid-column-gap: 70px;
 
     label {
       font-size: calc(5px + 1vw);
@@ -22,13 +23,52 @@ $taupe: #dfac89;
       color: $taupe;
       font-size: calc(5px + 1vw);
     }
+
+    textarea {
+      resize: none;
+      font-family: inherit;
+    }
   }
 
   &__input {
-    width: 29vw;
-    padding: 1.5vw;
+    width: 27vw;
+    padding: 6px;
     border: none;
     border-bottom: 1px solid $taupe;
     font-size: calc(5px + 1vw);
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .new-search {
+    padding-top: 7vw;
+
+    &__input {
+      width: 32vw;
+    }
+  }
+}
+
+@media screen and (max-width: 455px) {
+  .new-search {
+    &__form {
+      grid-column-gap: 35px;
+    }
+
+    &__input {
+      width: 34vw;
+    }
+  }
+}
+
+  @media screen and (max-width: 412px) {
+    .new-search {
+      &__form {
+      grid-column-gap: 28px;
+    }
+
+    &__input {
+      width: 37vw;
+    }
   }
 }

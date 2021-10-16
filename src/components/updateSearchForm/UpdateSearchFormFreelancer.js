@@ -6,9 +6,7 @@ import { Button } from "../button/Button";
 import axios from "axios";
 
 function UpdateSearchFormFreelancer() {
-
     const [searchId, setSearchId] = useState();
-
     const { handleSubmit, formState: { errors }, register } = useForm();
     const [updateSearchSuccess, toggleUpdateSearchSuccess] = useState();
     const history = useHistory();

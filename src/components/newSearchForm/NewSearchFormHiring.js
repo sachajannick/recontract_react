@@ -63,7 +63,7 @@ function NewSearchFormHiring() {
                     <div>
                         <label
                             htmlFor="amount">
-                            I want to spend around (in € per hour):
+                            I want to spend around (€ p/h):
                         </label>
                         <input
                             className={styles["new-search__input"]}
@@ -145,7 +145,7 @@ function NewSearchFormHiring() {
                             Email
                         </label>
                         <input
-                            className={styles["get-started__input"]}
+                            className={styles["new-search__input"]}
                             type="email"
                             {...register("email", {
                                 required: {

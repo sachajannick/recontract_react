@@ -1,9 +1,32 @@
 $taupe: #dfac89;
-$darker-taupe: rgba(223, 172, 137, 0.76);
+$darker-taupe: rgba(223, 172, 137, 0.88);
 
-.logged-in-choose {
+.logged-in-choose__search-not-present {
   width: 100%;
-  height: 475px;
+  height: 100%;
+  padding: 5vw 10vw 0 10vw;
+  display: flex;
+  align-self: flex-start;
+  flex-direction: column;
+  gap: 3.5vw;
+
+  &__link {
+    color: $taupe;
+    font-size: calc(7px + 1.5vw);
+    font-weight: 500;
+    text-decoration: none;
+
+    &:hover {
+      color: $darker-taupe;
+      cursor: pointer;
+      transition: all 0.3s ease-out;
+    }
+  }
+}
+
+.logged-in-choose__search-present {
+  width: 100%;
+  height: 100%;
   padding: 5vw 10vw 0 10vw;
   display: flex;
   align-self: flex-start;
