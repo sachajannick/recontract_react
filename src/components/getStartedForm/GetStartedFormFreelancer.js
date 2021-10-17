@@ -9,7 +9,7 @@ function GetStartedFormFreelancer() {
     const { handleSubmit, formState: { errors }, register, watch } = useForm();
     const password = useRef({});
     password.current = watch("password");
-    const [ registerSuccess, toggleRegisterSuccess ] = useState(false);
+    const [ registerFailure, toggleRegisterFailure] = useState(false);
     const history = useHistory();
 
     async function onSubmit(data) {
@@ -21,10 +21,10 @@ function GetStartedFormFreelancer() {
                 hiringOrFreelancer: "freelancer",
                 role: ["user"]
             })
-            toggleRegisterSuccess(true);
             history.push('/login-freelancer');
         } catch (e) {
             console.error(e);
+            toggleRegisterFailure(true);
         }
     }
 
@@ -49,6 +49,7 @@ function GetStartedFormFreelancer() {
                             })}
                         />
                         {errors.username && <p>{errors.username.message}</p>}
+                        {registerFailure && <p>Username is already taken!</p>}
                     </div>
 
                     <div>
@@ -96,8 +97,6 @@ function GetStartedFormFreelancer() {
                         type="submit"
                         btnText={"Continue"}
                     />
-
-                    {registerSuccess && <p>Registration successful!</p>}
                 </form>
             </div>
         </div>

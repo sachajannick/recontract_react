@@ -11,7 +11,6 @@ function GreetingHeaderLogOut() {
 
     return (
         <div className={styles["greeting-header"]}>
-
             <h2>Welcome back!</h2>
             <h3>Please select what you want to do. Want to log out?&nbsp;
             {user !== null &&
@@ -21,7 +20,6 @@ function GreetingHeaderLogOut() {
                 Click here.
             </span>}
             </h3>
-
         </div>
     );
 }

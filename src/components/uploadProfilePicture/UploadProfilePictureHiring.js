@@ -7,7 +7,7 @@ import axios from "axios";
 
 function UploadProfilePictureHiring() {
     const { handleSubmit, formState: { errors }, register, watch } = useForm();
-    const [ uploadSuccess, toggleUploadSuccess ] = useState(false);
+    const [ invalidRequest, toggleInvalidRequest ] = useState(false);
     const history = useHistory();
     const userId = localStorage.getItem('id');
     const jwtToken = localStorage.getItem('token');
@@ -24,10 +24,10 @@ function UploadProfilePictureHiring() {
                         Authorization: `Bearer ${jwtToken}`,
                     }},
                 )
-            toggleUploadSuccess(true);
             history.push('/upload-picture-hiring-success');
         } catch (e) {
             console.error(e);
+            toggleInvalidRequest(true);
         }
     }
 
@@ -51,13 +51,13 @@ function UploadProfilePictureHiring() {
                     })}
                 />
                 {errors.profilePicture && <p>{errors.profilePicture.message}</p>}
+                {invalidRequest && <p>Something went wrong. Please try again!</p>}
 
                 <Button
                     type="submit"
                     btnText={"Continue"}
                 />
 
-                {uploadSuccess && <p>Upload successful!</p>}
             </form>
 
         </div>

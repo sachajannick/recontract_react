@@ -7,7 +7,7 @@ import axios from "axios";
 
 function NewSearchFormFreelancer() {
     const { handleSubmit, formState: { errors }, register } = useForm();
-    const [newSearchSuccess, toggleNewSearchSuccess] = useState();
+    const [ invalidRequest, toggleInvalidRequest ] = useState(false);
     const history = useHistory();
     const jwtToken = localStorage.getItem('token');
     const userId = localStorage.getItem('id');
@@ -28,10 +28,10 @@ function NewSearchFormFreelancer() {
                     Authorization: `Bearer ${jwtToken}`,
                 }
             })
-            toggleNewSearchSuccess(true);
             history.push("/new-search-freelancer-success");
         } catch (e) {
             console.error(e)
+            toggleInvalidRequest(true);
         }
     }
 
@@ -154,6 +154,7 @@ function NewSearchFormFreelancer() {
                             })}
                         />
                         {errors.email && <p>{errors.email.message}</p>}
+                        {invalidRequest && <p>Something went wrong. Please try again!</p>}
                     </div>
 
                     <Button
@@ -161,7 +162,6 @@ function NewSearchFormFreelancer() {
                         btnText={"Continue"}
                     />
 
-                    {newSearchSuccess && <p>Search is created!</p>}
                 </form>
             </div>
         </div>

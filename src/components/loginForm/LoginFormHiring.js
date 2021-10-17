@@ -68,7 +68,7 @@ function LoginFormHiring() {
                             })}
                         />
                         {errors.password && <p>{errors.password.message}</p>}
-                        {invalidInput && <p>Invalid input. Please try again! </p>}
+                        {invalidInput && <p>Invalid input. Please try again!</p>}
                     </div>
 
                     <Button

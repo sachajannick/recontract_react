@@ -9,7 +9,7 @@ function UpdateFormHiring() {
     const { handleSubmit, formState: { errors }, register, watch } = useForm();
     const password = useRef({});
     password.current = watch("password");
-    const [ updateSuccess, toggleUpdateSuccess ] = useState(false);
+    const [ invalidRequest, toggleInvalidRequest ] = useState(false);
     const history = useHistory();
     const userId = localStorage.getItem('id');
     const jwtToken = localStorage.getItem('token');
@@ -25,10 +25,10 @@ function UpdateFormHiring() {
                         Authorization: `Bearer ${jwtToken}`,
                     }},
             )
-            toggleUpdateSuccess(true);
             history.push('/update-hiring-success');
         } catch (e) {
             console.error(e);
+            toggleInvalidRequest(true);
         }
     }
 
@@ -94,6 +94,7 @@ function UpdateFormHiring() {
                             })}
                         />
                         {errors.password2 && <p>{errors.password2.message}</p>}
+                        {invalidRequest && <p>Something went wrong. Please try again! </p>}
                     </div>
 
                     <Button
@@ -101,7 +102,6 @@ function UpdateFormHiring() {
                         btnText={"Continue"}
                     />
 
-                    {updateSuccess && <p>Registration successful!</p>}
                 </form>
             </div>
         </div>

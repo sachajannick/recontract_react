@@ -9,16 +9,16 @@ import CountLengthOfList from "../../helpers/CountLengthOfList";
 function MatchCardFreelancer() {
     const jwtToken = localStorage.getItem('token');
     const { handleSubmit } = useForm();
-    const [count, setCount] = useState(0);
-    const [length, setLength] = useState(null);
-    const [startMatch, setStartMatch] = useState(false);
-    const [functionTitle, setFunctionTitle] = useState();
-    const [amount, setAmount] = useState();
-    const [location, setLocation] = useState();
-    const [headline, setHeadline] = useState();
-    const [email, setEmail] = useState();
-    const [fullName, setFullName] = useState();
-    const [profilePicture, setProfilePicture] = useState();
+    const [ count, setCount ] = useState(0);
+    const [ length, setLength ] = useState(null);
+    const [ startMatch, setStartMatch ] = useState(false);
+    const [ functionTitle, setFunctionTitle ] = useState();
+    const [ amount, setAmount ] = useState();
+    const [ location, setLocation ] = useState();
+    const [ headline, setHeadline ] = useState();
+    const [ email, setEmail ] = useState();
+    const [ fullName, setFullName ] = useState();
+    const [ profilePicture, setProfilePicture ] = useState();
 
     async function fetchProfilePicture(photo) {
         try {

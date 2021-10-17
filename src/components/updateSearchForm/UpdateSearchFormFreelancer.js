@@ -6,9 +6,9 @@ import { Button } from "../button/Button";
 import axios from "axios";
 
 function UpdateSearchFormFreelancer() {
-    const [searchId, setSearchId] = useState();
+    const [ searchId, setSearchId ] = useState();
     const { handleSubmit, formState: { errors }, register } = useForm();
-    const [updateSearchSuccess, toggleUpdateSearchSuccess] = useState();
+    const [ invalidRequest, toggleInvalidRequest ] = useState(false);
     const history = useHistory();
     const jwtToken = localStorage.getItem('token');
     const userId = localStorage.getItem('id');
@@ -24,6 +24,7 @@ function UpdateSearchFormFreelancer() {
             setSearchId(searches.data);
         } catch (e) {
             console.error(e);
+            toggleInvalidRequest(true);
         }
     }
 
@@ -44,7 +45,6 @@ function UpdateSearchFormFreelancer() {
                     Authorization: `Bearer ${jwtToken}`,
                 }
             })
-            toggleUpdateSearchSuccess(true);
             history.push("/update-search-freelancer-success");
         } catch (e) {
             console.error(e);
@@ -170,6 +170,7 @@ function UpdateSearchFormFreelancer() {
                             })}
                         />
                         {errors.email && <p>{errors.email.message}</p>}
+                        {invalidRequest && <p>Something went wrong. Please try again!</p>}
                     </div>
 
                     <Button
@@ -177,7 +178,6 @@ function UpdateSearchFormFreelancer() {
                         btnText={"Continue"}
                     />
 
-                    {updateSearchSuccess && <p>Search is updated!</p>}
                 </form>
             </div>
         </div>
