@@ -3,7 +3,7 @@ import styles from "./MatchCard.module.scss"
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import IterateThroughList from "../../helpers/IterateThroughList";
+import GetObjectsFromList from "../../helpers/GetObjectsFromList";
 import CountLengthOfList from "../../helpers/CountLengthOfList";
 
 function MatchCardFreelancer() {
@@ -43,7 +43,7 @@ function MatchCardFreelancer() {
             }},
         )
 
-        const result = IterateThroughList(searchResult.data, count);
+        const result = GetObjectsFromList(searchResult.data, count);
 
         setFunctionTitle(result.functionTitle);
         setAmount(result.amount);

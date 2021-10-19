@@ -1,4 +1,4 @@
-function IterateThroughList(list, count) {
+function GetObjectsFromList(list, count) {
     let current = 0;
 
     for (let i = 0; i < list.length; i++) {
@@ -11,4 +11,4 @@ function IterateThroughList(list, count) {
     }
 }
 
-export default IterateThroughList;
+export default GetObjectsFromList;
