@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ContentSection.module.scss";
-import SuccessIcon from "../../../../recontract/src/assets/successicon.svg";
+import SuccessIcon from "../../assets/successicon.svg";
 
 function ContentSection() {
     return (
